@@ -7,6 +7,7 @@
             <tr>
                 <th>Équipe</th>
                 <th>Joueur</th>
+                <th>Platform</th>
                 <th>Score</th>
                 <th>Goals</th>
                 <th>Assists</th>
@@ -35,9 +36,13 @@
                             </td>
                         <% } %>
                         <td class="table_player <%= player.PlayerName === match.mvp.PlayerName ? 'table_player_mvp' : ''%>">
-                            <a class="a_link" href="https://rocketleague.tracker.network/rocket-league/profile/epic/<%= player.PlayerName %>/overview"
-                                id="<%= player.TeamName === match.teams[0] ? 'team0' : 'team1'%>">
+                            <a class="a_link" href="https://rocketleague.tracker.network/rocket-league/profile/<%= match.platform[player.PlayerName][1] %>/<%= player.PlayerName %>/overview"
+                                id="<%= player.TeamName === match.teams[0] ? 'team0' : 'team1'%>" target="_blank">
                                 <%= player.PlayerName %><%= player.PlayerName === match.mvp.PlayerName ? ' +' : ''%></a>
+                        </td>
+                        <td class="table_platform">
+                            <img src="<%= match.platform[player.PlayerName][2] %>">
+                            
                         </td>
                         <td class="table_score"><%= player.Score %></td>
                         <td class="table_goal"><%= player.Goals %></td>

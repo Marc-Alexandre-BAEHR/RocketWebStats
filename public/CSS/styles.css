@@ -30,13 +30,17 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
-    outline: 1px solid white;
+    /* border: 1px solid white; */
+    /* outline: 1px solid white; */
+    border-radius: 10px;
 
 }
 
 th, td {
     padding: 5px;
     text-align: center;
+    border-radius: 5px;
+    outline: 1px solid black;
 }
 
 th { background-color: #000000; }

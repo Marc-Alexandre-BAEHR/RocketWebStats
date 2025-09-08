@@ -1,8 +1,16 @@
 const fs = require("fs");
 const path = require("path");
-const { parseCSV } = require("./utils/parseCSV.js");
-const folderPath = process.env.SAVEDFILEPATH;
+const { parseCSV } = require("./Js/parseCSV.js");
+const folderPath = process.env.SAVEDFILEPATH || 'SavedFilesPasted';
 const jsonPath = path.join(__dirname, "matches.json");
+
+
+// Importation des fichiers :
+
+const { convertPlatform } = require("./Js/convertPlatform.js")
+
+
+
 
 // Fonction pour convertir le timestamp récupéré en vrai date visible sur le site
 function convertTimestampDate(timestamp) {
@@ -88,6 +96,7 @@ async function generateJSON() {
             timestamp: convertTimestampDate(data[0].Timestamp),
             teams: [...new Set(data.map(d => d.TeamName))],
             teamsData,
+            platform: convertPlatform(data),
             winner: getWinner(teamsData),
             duration: getMatchDuration(data),
             mvp: getMVP(data),

@@ -8,3 +8,11 @@
 .table_save         { width: 5%; }
 .table_shot         { width: 5%; }
 .table_possession   { width: 7%; }
+.table_platform     {width: 5%; }
+
+/* Redimension des images de plateforme */
+.table_platform img {
+    width: 30%;
+    height: auto;
+    object-fit: contain;
+}

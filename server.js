@@ -22,12 +22,13 @@ app.get("/", async (req, res) => {
         }
         res.render("index", { matches: matches.reverse() });
     } catch (err) {
-        console.error("Erreur updateMatches:", err);
-        res.status(500).send("Erreur lors du traitement des matchs.");
+        console.error(err);
+        res.status(500).send("Err500");
     }
 });
 
 // Pour lancer sur le port
 app.listen(PORT, () => {
-    console.log(`🚀 Serveur lancé sur http://localhost:${PORT}`);
+    console.log(`Ok Garmin, ouvre le serveur`);
+    console.log(`http://localhost:${PORT}`);
 });
