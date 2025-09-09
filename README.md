@@ -2,6 +2,7 @@
 
 Rocket Web Stats transforme vos données Rocket League en un site visuel.
 
+
 ## Requirements
 
 - BakkesMod : https://bakkesplugins.com/
@@ -45,6 +46,18 @@ Si vous avez suivi toute les étapes, vous devrez pouvoir lancer le programme \
 
 Vous devriez donc voir vos statistiques à l'adresse : http://localhost:3000/ \
 __Merci.__
+
+
+#### 5. Le site Web
+
+Le site web assigné au repository est pour le moment GitHub Pages, mais mon projet utilisant \
+NodeJS et ExpressJS, GitHube Pages ne peut pas l'afficher, et affiche donc ce README.md
+
+Vous trouverez donc au site suivant le README.md : \
+https://marc-alexandre-baehr.github.io/RocketWebStats/
+
+et à ce site une version fonctionelle du projet : \
+https://rocketwebstats.onrender.com/
 
 ### Auteur:
 - Marc-Alexandre BAEHR
