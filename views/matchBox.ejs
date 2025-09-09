@@ -1,14 +1,30 @@
 <div class="match-box">
-    <h2><%= match.timestamp %></h2> 
-        <!-- <span class="titleMVP"><%= match.mvp.PlayerName %></span> MVP</h2> -->
-    <p class="match-duration"><%= match.duration %></p>
+
+    <!-- Div qui affiche l'équipe gagnante, la date, et la durée du match-->
+    <div class="match-box-title">
+        
+        <!-- Affichage de l'équipe gagnante -->
+        <span>
+            <%= match.winner %>
+        </span>
+        
+        <!-- Affichage de la date de la partie -->
+        <span>
+            <%= match.timestamp %>
+        </span>
+        
+        <!-- Affichage de la durée de la partie -->
+        <span class="match-duration">
+            <%= match.duration %>
+        </span>
+    </div>
 
     <!-- Table équipe 0 -->
     <table class="scoreboard">
         <tbody>
             <tr class="thead">
                 <td><%= match.teams[0] %></td>
-                <td>Joueur</td>
+                <td>Player</td>
                 <td>Platform</td>
                 <td>Score</td>
                 <td>Goals</td>
@@ -17,20 +33,23 @@
                 <td>Shots</td>
                 <td>Possession</td>
             </tr>
-            <% const team0Players = match.players.filter(p => p.TeamName === match.teams[0]); %>
-            <% team0Players.forEach(player => { %>
-                <%- include('layout/table.ejs', { match: match, player: player, teamName: match.teams[0] }) %>
+            <% const team0Players = match.players
+                                        .filter(p => p.TeamName === match.teams[0])
+                                        .sort((a, b) => parseInt(b.Score) - parseInt(a.Score)); %>
+            <% team0Players.forEach((player, index) => { %>
+                <%- include('layout/table.ejs', { match: match, player: player, index, teamName: match.teams[0] }) %>
             <% }) %>
         </tbody>
     </table>
 
     <br>
+
     <!-- Table équipe 1 -->
     <table class="scoreboard">
         <tbody>
             <tr class="thead">
                 <td><%= match.teams[1] %></td>
-                <td>Joueur</td>
+                <td>Player</td>
                 <td>Platform</td>
                 <td>Score</td>
                 <td>Goals</td>
@@ -39,12 +58,13 @@
                 <td>Shots</td>
                 <td>Possession</td>
             </tr>
-            <% const team1Players = match.players.filter(p => p.TeamName === match.teams[1]); %>
-            <% team1Players.forEach(player => { %>
-                <%- include('layout/table.ejs', { match: match, player: player, teamName: match.teams[1] }) %>
+            <% const team1Players = match.players
+                                        .filter(p => p.TeamName === match.teams[1])
+                                        .sort((a, b) => parseInt(b.Score) - parseInt(a.Score)); %>
+            <% team1Players.forEach((player, index) => { %>
+                <%- include('layout/table.ejs', { match: match, player: player, index, teamName: match.teams[1] }) %>
             <% }) %>
         </tbody>
     </table>
-
 
 </div>

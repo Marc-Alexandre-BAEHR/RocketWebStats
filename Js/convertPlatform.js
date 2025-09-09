@@ -1,5 +1,8 @@
 const path = require("path");
 
+// Fonction creer pour convertir la plateforme récuperer dans le json
+// en un tableau pour avoir le png, ainsi que l'abréviation
+// de la plateformepour récuperer le tracker de l'utilisateur 
 function convertPlatform(players)
 {
     const platform_data = {};
