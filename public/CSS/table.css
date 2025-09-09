@@ -1,6 +1,6 @@
 
 /* Longueur des colonnes */
-.table_team         { width: 20%; }
+.table_team         { width: 20%; background: black; }
 .table_player       { width: 15%;}
 .table_score        { width: 7%; }
 .table_goal         { width: 5%; }

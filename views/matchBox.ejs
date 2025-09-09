@@ -1,59 +1,50 @@
 <div class="match-box">
-    <h2><%= match.timestamp %> | <span class="titleMVP"><%= match.mvp.PlayerName %></span> MVP</h2>
+    <h2><%= match.timestamp %></h2> 
+        <!-- <span class="titleMVP"><%= match.mvp.PlayerName %></span> MVP</h2> -->
     <p class="match-duration"><%= match.duration %></p>
 
+    <!-- Table équipe 0 -->
     <table class="scoreboard">
-        <thead>
-            <tr>
-                <th>Équipe</th>
-                <th>Joueur</th>
-                <th>Platform</th>
-                <th>Score</th>
-                <th>Goals</th>
-                <th>Assists</th>
-                <th>Saves</th>
-                <th>Shots</th>
-                <th>Possession</th>
-            </tr>
-        </thead>
-
         <tbody>
-            <% match.teams.forEach(teamName => { %>
-                <% 
-                    const teamPlayers = match.players.filter(p => p.TeamName === teamName);
-                    const isWinner = match.winner === teamName;
-                    const teamTotalScore = teamPlayers.reduce((sum, p) => sum + parseInt(p.Score), 0);
-                %>
-                <% teamPlayers.forEach(player => { %>
-                    <tr class="<%= player.TeamName === match.winner ? 'table_tWinner' : 'table_tLoser' %>"
-                        id="<%= player.TeamName === match.teams[0] ? 'team0' : 'team1'%>">
-                        <% if (player === teamPlayers[0]) { %>
-                            <td
-                            rowspan="<%= teamPlayers.length %>"
-                            class="table_team"
-                            style="font-weight:<%= isWinner ? 'bold' : 'normal' %>">
-                                <%= teamName %> - <%= match.teamsData[player.TeamName].goals %>
-                            </td>
-                        <% } %>
-                        <td class="table_player <%= player.PlayerName === match.mvp.PlayerName ? 'table_player_mvp' : ''%>">
-                            <a class="a_link" href="https://rocketleague.tracker.network/rocket-league/profile/<%= match.platform[player.PlayerName][1] %>/<%= player.PlayerName %>/overview"
-                                id="<%= player.TeamName === match.teams[0] ? 'team0' : 'team1'%>" target="_blank">
-                                <%= player.PlayerName %><%= player.PlayerName === match.mvp.PlayerName ? ' +' : ''%></a>
-                        </td>
-                        <td class="table_platform">
-                            <img src="<%= match.platform[player.PlayerName][2] %>">
-                            
-                        </td>
-                        <td class="table_score"><%= player.Score %></td>
-                        <td class="table_goal"><%= player.Goals %></td>
-                        <td class="table_assist"><%= player.Assists %></td>
-                        <td class="table_save"><%= player.Saves %></td>
-                        <td class="table_shot"><%= player.Shots %></td>
-                        <td class="table_possession"><%= player.PossessionTime %></td>
-                    </tr>
-                <% }) %>
+            <tr class="thead">
+                <td><%= match.teams[0] %></td>
+                <td>Joueur</td>
+                <td>Platform</td>
+                <td>Score</td>
+                <td>Goals</td>
+                <td>Assists</td>
+                <td>Saves</td>
+                <td>Shots</td>
+                <td>Possession</td>
+            </tr>
+            <% const team0Players = match.players.filter(p => p.TeamName === match.teams[0]); %>
+            <% team0Players.forEach(player => { %>
+                <%- include('layout/table.ejs', { match: match, player: player, teamName: match.teams[0] }) %>
             <% }) %>
         </tbody>
     </table>
+
+    <br>
+    <!-- Table équipe 1 -->
+    <table class="scoreboard">
+        <tbody>
+            <tr class="thead">
+                <td><%= match.teams[1] %></td>
+                <td>Joueur</td>
+                <td>Platform</td>
+                <td>Score</td>
+                <td>Goals</td>
+                <td>Assists</td>
+                <td>Saves</td>
+                <td>Shots</td>
+                <td>Possession</td>
+            </tr>
+            <% const team1Players = match.players.filter(p => p.TeamName === match.teams[1]); %>
+            <% team1Players.forEach(player => { %>
+                <%- include('layout/table.ejs', { match: match, player: player, teamName: match.teams[1] }) %>
+            <% }) %>
+        </tbody>
+    </table>
+
 
 </div>

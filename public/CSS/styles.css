@@ -2,7 +2,6 @@
 
 body {
     font-family: Rubik;
-    background: rgb(4, 9, 48);
     background: linear-gradient(180deg, #036, #013);
 }
 
@@ -26,7 +25,7 @@ header {
 
 /* Stylé général du tableau des scores */
 table {
-    /* width: 100%; */
+    width: 100%;
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;

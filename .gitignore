@@ -5,3 +5,5 @@ package-lock.json
 node_modules/
 
 matches.json
+
+views/layout/*test*.ejs
