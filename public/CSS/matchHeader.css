@@ -1,0 +1,68 @@
+.show-more_button {
+    display: block;
+    background: black;
+    color: white;
+    justify-content: center;
+    text-align: center;
+    width: 60%;
+    margin : 0 20%;
+    border: none;
+    outline: none;
+    gap: 20px;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.show-more_button:hover {
+    background: gray;
+}
+
+
+.match-header {
+    width: auto;
+    margin: 0 auto;
+    justify-content: center;
+    background: linear-gradient(0deg, rgb(7, 0, 57), rgb(9, 0, 67));
+    color: white;
+    /* margin: 0 20%; */
+    padding: 20px;
+    margin-bottom: 2%;
+    border-radius: 5px;
+    text-align: center;
+
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.match-background {
+    background: linear-gradient(0deg, rgb(5, 0, 15), rgb(5, 0, 21));
+    margin: 0 20%;
+    border-radius: 5px;
+}
+
+.match-header td {
+    outline: 1px solid black;
+    border: 1px solid black;
+    background: black;
+}
+
+
+.scoreResult {
+    color: black;
+    width: 10%;
+}
+
+.LoseText {
+    background: #b30000;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.WinText {
+    background: #00c300;
+    padding: 5px;
+    border-radius: 5px;
+
+}

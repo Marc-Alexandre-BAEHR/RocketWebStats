@@ -6,6 +6,7 @@
     <title>RL Game History</title>
     <link rel="stylesheet" href="/CSS/styles.css">
     <link rel="stylesheet" href="/CSS/table.css">
+    <link rel="stylesheet" href="/CSS/matchHeader.css">
 </head>
 
 <body>
@@ -17,9 +18,14 @@
         <p>No match found.</p>
     <% } else { %>
         <% matches.forEach(match=> { %>
-            <%- include('matchBox', { match: match }) %>
+            <div class="match-background">
+                <%- include('headerBox', { match: match }) %>
+                <%- include('matchBox', { match: match }) %>
+            </div>
         <% }) %>
     <% } %>
 </body>
+
+<script src="client.js"></script>
 
 </html>

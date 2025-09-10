@@ -79,29 +79,57 @@ function getWinner(teamsData) {
     return null;
 }
 
+// Fonction pour récuperer le nom de la team qui a perdu
+function getLoser(teamsData) {
+    const teamNames = Object.keys(teamsData);
+    if (teamsData[teamNames[0]].goals > teamsData[teamNames[1]].goals)
+        return teamNames[1];
+    if (teamsData[teamNames[0]].goals < teamsData[teamNames[1]].goals)
+        return teamNames[0];
+    return null;
+}
+
 // Fonction pour récupérer le meilleur joueur (MVP: Most Valuable Player)
 function getMVP(players) {
     return players.reduce((best, p) => (!best || parseInt(p.Score) > parseInt(best.Score)) ? p : best, null);
 }
 
+
 // Fonction pour générer le .json et envoyé les données au serveur, pour ensuite les rendre sur le site
 async function generateJSON() {
+
+    // Psedonyme du joueur à suivre
+    const nickname = "Mithanne";
+
+
     const files = fs.readdirSync(folderPath).filter(f => f.endsWith(".csv"));
     let matches = [];
+    let id = 1;
     for (const file of files) {
         const data = await parseCSV(path.join(folderPath, file));
         const teamsData = getTeamsData(data);
+
+        // récupère la team du joueur, et détermine grace à l'équipe si le joueur a gagné ou non
+        const playerTeam = data.find(p => p.PlayerName === nickname)?.TeamName;
+        const matchResult = (playerTeam && playerTeam === getWinner(teamsData)) ? "Win" : "Lose";
+
+        // renvoie un dictionnaire de toute les données récupérés jusqu'a présent
+        // pour pouvoir les utiliser dans le .ejs
         const match = {
+            id: id,
             filename: file,
             timestamp: convertTimestampDate(data[0].Timestamp),
             teams: [...new Set(data.map(d => d.TeamName))],
             teamsData,
             platform: convertPlatform(data),
             winner: getWinner(teamsData),
+            loser: getLoser(teamsData),
+            matchResult: matchResult,
             duration: getMatchDuration(data),
             mvp: getMVP(data),
             players: data
         };
+        id++;
         matches.push(match);
     }
     fs.writeFileSync(jsonPath, JSON.stringify(matches, null, 2), "utf8");

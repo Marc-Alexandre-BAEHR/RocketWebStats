@@ -1,4 +1,4 @@
-<div class="match-box">
+<div class="match-box" id="details_<%= match.id %>">
 
     <!-- Div qui affiche l'équipe gagnante, la date, et la durée du match-->
     <div class="match-box-title">
@@ -18,6 +18,8 @@
             <%= match.duration %>
         </span>
     </div>
+
+    <br>
 
     <!-- Table équipe 0 -->
     <table class="scoreboard">
@@ -66,5 +68,9 @@
             <% }) %>
         </tbody>
     </table>
+    <hr>
+    <span class="match-id">
+        id - <%= match.id %>
+    </span>
 
 </div>

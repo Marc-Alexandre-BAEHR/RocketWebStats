@@ -1,0 +1,28 @@
+<div class="match-header" onclick="toggleDetails('<%= match.id %>')">
+    <!-- <tr>
+        <td>Team1</td>
+        <td>Score1</td>
+        <td>Score2</td>
+        <td>Team2</td>
+        <td>Durée</td>
+    </tr> -->
+
+    <div class="timestamp">
+        <%= match.timestamp %>
+    </div>
+
+    <div class="scoreWinner">
+        <%= match.winner %> ( <%= match.teamsData[match.winner]['goals'] %> )
+    </div>
+    
+    <div class="scoreLoser">
+        ( <%= match.teamsData[match.loser]['goals'] %> ) <%= match.loser %>
+    </div>
+
+    <% if (match.matchResult === "Win") {%>
+        <div class="scoreResult WinText">WIN</div>
+    <% } else { %>
+        <div class="scoreResult LoseText">LOSE</div>
+    <% } %>
+    
+</div>
