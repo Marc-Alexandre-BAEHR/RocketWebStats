@@ -24,6 +24,7 @@ header {
     margin-bottom: 2%;
     border-radius: 10px;
     box-shadow: 0px 2px 5px transparent;
+    transition: margin-right 2s;
 }
 
 .match-box.active {
