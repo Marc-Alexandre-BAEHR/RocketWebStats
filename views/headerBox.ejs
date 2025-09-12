@@ -21,8 +21,10 @@
 
     <% if (match.matchResult === "Win") {%>
         <div class="scoreResult WinText">WIN</div>
-    <% } else { %>
+    <% } else if (match.matchResult === "Lose") { %>
         <div class="scoreResult LoseText">LOSE</div>
+    <% } else { %>
+        <div class="scoreResult NoNameText">N/A</div>
     <% } %>
     
 </div>

@@ -42,8 +42,12 @@ async function generateJSON() {
 
         // récupère la team du joueur, et détermine grace à l'équipe si le joueur a gagné ou non
         const playerTeam = data.find(p => p.PlayerName === nickname)?.TeamName;
-        const matchResult = (playerTeam && playerTeam === getWinner(teamsData)) ? "Win" : "Lose";
-
+        
+        let matchResult = "";
+        if (nickname)
+            matchResult = (playerTeam && playerTeam === getWinner(teamsData)) ? "Win" : "Lose";
+        else
+            matchResult = 'N/A'; 
         // renvoie un dictionnaire de toute les données récupérés jusqu'a présent
         // pour pouvoir les utiliser dans le .ejs
         const match = {
