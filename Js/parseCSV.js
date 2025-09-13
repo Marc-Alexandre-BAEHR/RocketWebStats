@@ -1,7 +1,7 @@
 const fs = require("fs");
 const csv = require("csv-parser");
 
-// Simple fonction pour renvoyer le CSV (trouvé sur Internet, mais j'ai plsu le site)
+// Simple fonction pour renvoyer le CSV (trouvé sur Internet, mais j'ai plus le site)
 function parseCSV(filePath) {
     return new Promise((resolve, reject) => {
         const results = [];

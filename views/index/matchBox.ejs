@@ -39,7 +39,11 @@
                                         .filter(p => p.TeamName === match.teams[0])
                                         .sort((a, b) => parseInt(b.Score) - parseInt(a.Score)); %>
             <% team0Players.forEach((player, index) => { %>
-                <%- include('layout/table.ejs', { match: match, player: player, index, teamName: match.teams[0] }) %>
+                <%- include('../layout/table.ejs', { 
+                    match: match, 
+                    player: player, 
+                    index, 
+                    teamName: match.teams[0] }) %>
             <% }) %>
         </tbody>
     </table>
@@ -64,7 +68,11 @@
                                         .filter(p => p.TeamName === match.teams[1])
                                         .sort((a, b) => parseInt(b.Score) - parseInt(a.Score)); %>
             <% team1Players.forEach((player, index) => { %>
-                <%- include('layout/table.ejs', { match: match, player: player, index, teamName: match.teams[1] }) %>
+                <%- include('../layout/table.ejs', { 
+                    match: match, 
+                    player: player, 
+                    index,
+                    teamName: match.teams[1] }) %>
             <% }) %>
         </tbody>
     </table>

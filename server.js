@@ -9,7 +9,7 @@ const app = express();
 
 // fichiers crées
 const { generateJSON } = require("./Js/getMatchData.js");
-const PORT = 3000;
+const PORT = 5500;
 
 
 
@@ -29,7 +29,7 @@ app.get("/", async (req, res) => {
         res.render("index", { matches: matches.reverse() });
     } catch (err) {
         console.error(err);
-        res.status(500).send("Err500");
+        res.status(500).send(err);
     }
 });
 

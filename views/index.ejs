@@ -19,8 +19,8 @@
     <% } else { %>
         <% matches.forEach(match=> { %>
             <div class="match-background">
-                <%- include('headerBox', { match: match }) %>
-                <%- include('matchBox', { match: match }) %>
+                <%- include('index/headerBox', { match: match }) %>
+                <%- include('index/matchBox', { match: match }) %>
             </div>
         <% }) %>
     <% } %>

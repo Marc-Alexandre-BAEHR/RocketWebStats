@@ -21,16 +21,18 @@
 
 .match-header {
     width: auto;
-    margin: 0 auto;
-    justify-content: center;
+    /* margin: 0 auto; */
     background: linear-gradient(0deg, rgb(7, 0, 57), rgb(9, 0, 67));
     color: white;
     /* margin: 0 20%; */
     padding: 20px;
     margin-bottom: 2%;
     border-radius: 5px;
+    justify-content: center;
     text-align: center;
+    align-items: center;
 
+    vertical-align: middle;
 
     display: flex;
     justify-content: space-between;

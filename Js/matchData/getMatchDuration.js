@@ -13,7 +13,7 @@ function parseTimeToSeconds(timeStr) {
 
 
 
-// Fonction pour récuperer le temps de la partie (basé faussement sur la possession, seul data disponible)
+// Fonction pour récuperer le temps de la partie (basé faussement sur la possession de chaque joueur, seul data disponible)
 function getMatchDuration(players) {
     let totalSec = 0;
     players.forEach(p => {

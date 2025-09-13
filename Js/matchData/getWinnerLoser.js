@@ -9,7 +9,6 @@ function getWinner(teamsData) {
 }
 
 
-
 // Fonction pour récuperer le nom de la team qui a perdu
 function getLoser(teamsData) {
     const teamNames = Object.keys(teamsData);

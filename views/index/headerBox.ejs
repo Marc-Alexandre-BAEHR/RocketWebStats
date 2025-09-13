@@ -10,13 +10,21 @@
     <div class="timestamp">
         <%= match.timestamp %>
     </div>
-
-    <div class="scoreWinner">
-        <%= match.winner %> ( <%= match.teamsData[match.winner]['goals'] %> )
-    </div>
     
-    <div class="scoreLoser">
-        ( <%= match.teamsData[match.loser]['goals'] %> ) <%= match.loser %>
+    <div>
+        <div class="scoreWinner">
+            <strong>
+                <%= match.winner %>
+            </strong>
+            ( <%= match.teamsData[match.winner]['goals'] %> )
+        </div>
+        
+        <div class="scoreLoser">
+            ( <%= match.teamsData[match.loser]['goals'] %> )
+            <strong>
+                <%= match.loser %>
+            </strong>
+        </div>
     </div>
 
     <% if (match.matchResult === "Win") {%>
