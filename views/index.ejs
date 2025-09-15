@@ -6,24 +6,41 @@
     <title>RL Game History</title>
     <link rel="stylesheet" href="/CSS/styles.css">
     <link rel="stylesheet" href="/CSS/table.css">
-    <link rel="stylesheet" href="/CSS/matchHeader.css">
+
+    <link rel="stylesheet" href="/CSS/history/preview.css">
+    <link rel="stylesheet" href="/CSS/history/content.css">
+    <link rel="stylesheet" href="/CSS/history.css">
+    <link rel="stylesheet" href="/CSS/sidebar.css">
 </head>
 
 <body>
+    <!-- Display the header-->
     <header>
         <h1>Rocket League History</h1>
     </header>
 
-    <% if (matches.length===0) { %>
-        <p>No match found.</p>
-    <% } else { %>
-        <% matches.forEach(match=> { %>
-            <div class="match-background">
-                <%- include('index/headerBox', { match: match }) %>
-                <%- include('index/matchBox', { match: match }) %>
-            </div>
-        <% }) %>
-    <% } %>
+    <!-- Display flex for positionning the sidebar (left) and main content (right) -->
+    <main> 
+        <sidebar class="left-bar">
+            <!-- <button>History</button>
+            <button>Player</button> -->
+            Sidebar content 
+        </sidebar>
+
+        <section class="right-bar match-history-content">
+            <% if (matches.length===0) { %>
+                <p>No match found.</p>
+            <% } else { %>
+                <% matches.forEach(match=> { %>
+                    <div class="match-background">
+                        <%- include('index/headerBox', { match: match }) %>
+                        <%- include('index/matchBox', { match: match }) %>
+                    </div>
+                <% }) %>
+            <% } %>
+        </section>
+    </main>
+
 </body>
 
 <script src="client.js"></script>

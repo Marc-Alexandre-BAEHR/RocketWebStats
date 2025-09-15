@@ -1,25 +1,18 @@
-
 /* Longueur des colonnes */
-/* .table_team         { width: 20%; outline: 1px solid yellow;} */
- /* background: black; outline: 1px solid green; } */
 .table_team_winner {
     width: 20%;
-    /* background: white; */
     background: black;
     outline: 1px dashed rgb(62, 62, 0);
     outline-offset: -3px;
     border-radius: 3px;
     font-weight: bold;
     font-size:x-large;
-    
 }
 
 .table_team_loser {
     width: 20%;
     font-size:larger;
-    /* background: white; */
     background: black;
-
 }
 
 .table_player       { width: 15%;}
@@ -29,7 +22,7 @@
 .table_save         { width: 5%; }
 .table_shot         { width: 5%; }
 .table_possession   { width: 7%; }
-.table_platform     {width: 5%; }
+.table_platform     { width: 5%; }
 
 /* Redimension des images de plateforme */
 .table_platform img {

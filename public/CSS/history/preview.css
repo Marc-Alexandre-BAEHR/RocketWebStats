@@ -1,30 +1,8 @@
-.show-more_button {
-    display: block;
-    background: black;
-    color: white;
-    justify-content: center;
-    text-align: center;
-    width: 60%;
-    margin : 0 20%;
-    border: none;
-    outline: none;
-    gap: 20px;
-    padding: 25px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-
-.show-more_button:hover {
-    background: gray;
-}
-
-
+/* Contient uniquement la preview */
 .match-header {
+    background: linear-gradient(0deg, rgb(7, 0, 57), rgb(9, 0, 67)); /* Leger dégradé car uni = moche */
     width: auto;
-    /* margin: 0 auto; */
-    background: linear-gradient(0deg, rgb(7, 0, 57), rgb(9, 0, 67));
     color: white;
-    /* margin: 0 20%; */
     padding: 20px;
     margin-bottom: 2%;
     border-radius: 5px;
@@ -38,9 +16,10 @@
     justify-content: space-between;
 }
 
+/* Conteneur, contient la preview et le content */
 .match-background {
     background: linear-gradient(0deg, rgb(5, 0, 15), rgb(5, 0, 21));
-    margin: 0 20%;
+    margin: 0 10%;
     border-radius: 5px;
 }
 
@@ -51,27 +30,51 @@
 }
 
 
+/* Affichage des teams et du score */
 .scoreResult {
+    display: flex;
+    width: 40%;
+    padding: 10px;
+    border-radius: 5px;
+
+    gap: 2px;
+    justify-content: center;
+    margin: 0 auto;
+    background: #070b19;
+}
+
+/* Affiche si la game a été remporté, perdu, ou si aucun joueur recherché n'est trouvé (N/A) */
+.scoreResultStatus {
     color: black;
     width: 10%;
 }
 
 .LoseText {
     background: #b30000;
-    padding: 5px;
+    padding: 10px;
     border-radius: 5px;
 }
 
 .WinText {
     background: #00c300;
-    padding: 5px;
+    padding: 10px;
     border-radius: 5px;
 
 }
 
 .NoNameText {
     background: #dbdbdb;
-    padding: 5px;
+    padding: 10px;
     border-radius: 5px;
+
+}
+
+
+
+/* Affichage de la date du match (situé à gauche) */
+
+.timestamp {
+    display: block;
+    width: 20%;
 
 }

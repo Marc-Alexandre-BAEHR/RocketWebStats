@@ -26,7 +26,11 @@ app.get("/", async (req, res) => {
     try {
         // récupérer le tableau creer dans Js/getMatchData.js, pour l'envoyer dans le fichier index.jes (page principale du site)
         const matches = await generateJSON();
-        res.render("index", { matches: matches.reverse() });
+        console.log(process.env.NICKNAME);
+
+        const PlayerStats = {nickname: process.env.NICKNAME};
+
+        res.render("index", { matches: matches.reverse(), PlayerStats: PlayerStats });
     } catch (err) {
         console.error(err);
         res.status(500).send(err);

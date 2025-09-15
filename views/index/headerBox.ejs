@@ -8,10 +8,11 @@
     </tr> -->
 
     <div class="timestamp">
-        <%= match.timestamp %>
+        <%= match.timestamp[1] %>
+        <%= match.timestamp[2] %>
     </div>
     
-    <div>
+    <div class="scoreResult">
         <div class="scoreWinner">
             <strong>
                 <%= match.winner %>
@@ -27,12 +28,19 @@
         </div>
     </div>
 
-    <% if (match.matchResult === "Win") {%>
-        <div class="scoreResult WinText">WIN</div>
-    <% } else if (match.matchResult === "Lose") { %>
-        <div class="scoreResult LoseText">LOSE</div>
+    <!-- Affiche si le joueur est MVP de la partie ou non -->
+    <% if (match.mvp.PlayerName === PlayerStats.nickname) { %>
+        <div class="mvp-result">MVP</div>
     <% } else { %>
-        <div class="scoreResult NoNameText">N/A</div>
+        <span class="mvp-result" style="background: transparent"></span>
+    <% } %>
+
+    <% if (match.matchResult === "Win") {%>
+        <div class="scoreResultStatus WinText">WIN</div>
+    <% } else if (match.matchResult === "Lose") { %>
+        <div class="scoreResultStatus LoseText">LOSE</div>
+    <% } else { %>
+        <div class="scoreResultStatus NoNameText">N/A</div>
     <% } %>
     
 </div>

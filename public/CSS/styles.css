@@ -1,114 +1,43 @@
 @import url(https://fonts.googleapis.com/css?family=Poppins:400,500,600,700|Rubik:400,500,700);
 
+
 body {
     font-family: Rubik;
     background: linear-gradient(180deg, #036, #013);
+    margin: 0;
+    overflow:hidden;
 }
 
+
+/* Affichage du header */
 header {
     background: black;
     color: white;
     text-align: center;
-    border-radius: 5px;
-    margin: 0 22%;
-
+    padding: 2vh 0;
+    height: 5vh;
 }
 
-.match-box {
-    display: none;
-    /* background: #000000; */
-    background: transparent;
-    color: white;
-    padding: 15px;
-    /* margin: 15px 20%; */
-    margin-bottom: 2%;
-    border-radius: 10px;
-    box-shadow: 0px 2px 5px transparent;
-    transition: margin-right 2s;
-}
-
-.match-box.active {
-    display: block;
-}
-
-.match-box-title {
-    display:flex;
-    align-items: center;
-    text-align: center;
-    justify-content: space-between;
-    font-weight: bolder;
-    font-size: 22px;
-    color: white;
-}
-
-/* Stylé général du tableau des scores */
-table {
-    width: 100%;
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    border-radius: 10px;
-
-}
-
-th, td {
-    padding: 5px;
-    text-align: center;
-    border-radius: 5px;
-    color: white;
-    outline: 1px solid black;
-}
-
-th { 
-    background-color: #000000;
-    background: black;
-    background: transparent;
-}
-
-h2 {
+/* Permet de retirer tout espace pouvant être générer par le titre h1 (margin top et bottom surtout ) */
+header h1 {
     margin: 0;
-    padding-bottom: 10px;
-    text-align: center;
+    padding: 0;
 }
 
-/* Affichage des teams et du score */
-/* au dessus du tableau des scores */
-.match_result {
+main {
     display: flex;
-    gap: 2px;
-    justify-content: center;
-    margin: 0 auto;
+    height: 91vh;
 }
 
-/* Style des styles de team */
-#team0 {
-    color: rgb(111, 170, 196);
-    background: rgb(6, 18, 56);
+
+/* Rightbar : Espace accueillant les données de la page (history ou player par exemple) */
+.right-bar {
+    padding-top: 2%;
+    min-width: 85%;
+    max-width: 85%;
+    background: radial-gradient(#39389d, #0a023b);
+    border: 2px solid black;
+
 }
 
-#team1 {
-    color: rgb(237, 224, 156);
-    background: rgb(66, 33, 14);
-}
 
-/* Pour enlever le souslignement des players à cause du lien TRN */
-.a_link { text-decoration: none; }
-
-/* Style pour le chrono au dessu du tableau des scores à droite */
-.match-duration {
-    color: gray;
-    font-style: italic;
-    text-align: right;
-}
-
-/* Style pour afficher le joueur MVP */
-.titleMVP {
-    font-style: italic;
-    color: gray;
-}
-
-.table_player_mvp {
-    font-weight: bold;
-    outline: 1px dashed rgb(63, 63, 0);
-    outline-offset: -3px;
-}

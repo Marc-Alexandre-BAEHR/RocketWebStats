@@ -48,6 +48,7 @@ async function generateJSON() {
             matchResult = (playerTeam && playerTeam === getWinner(teamsData)) ? "Win" : "Lose";
         else
             matchResult = 'N/A'; 
+
         // renvoie un dictionnaire de toute les données récupérés jusqu'a présent
         // pour pouvoir les utiliser dans le .ejs
         const match = {

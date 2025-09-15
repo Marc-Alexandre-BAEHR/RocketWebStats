@@ -1,0 +1,15 @@
+.left-bar {
+    min-width: 15%;
+    max-width: 15%;
+    width: 15%;
+    position: relative;
+    height: fit-content;
+    background: #101733;
+    color: white;
+    height: auto;
+}
+
+.left-bar button {
+    margin: auto;
+    display: flex;
+}

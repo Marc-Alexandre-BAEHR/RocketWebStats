@@ -21,8 +21,14 @@ function convertTimestampDate(timestamp) {
         "novembre",     // 11
         "décembre"      // 12
     ];
-    const final_string = `${day} ${mois[month - 1]} ${year} - ${hour}h${minute.toString().padStart(2, "0")}.${second.toString().padStart(2, "0")}`;
-    return final_string;
+    const date_string = `${day} ${mois[month - 1]} ${year}`;
+    const hour_string = `${hour}h${minute.toString().padStart(2, "0")}.${second.toString().padStart(2, "0")}`;
+    const full_string = date_string + '-' + hour_string;
+
+    const string_table = [full_string, date_string, hour_string];
+
+
+    return string_table;
 }
 
 
