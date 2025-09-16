@@ -44,7 +44,7 @@ async function generateJSON() {
         const playerTeam = data.find(p => p.PlayerName === nickname)?.TeamName;
         
         let matchResult = "";
-        if (nickname)
+        if (data.find(p => p.PlayerName === nickname))
             matchResult = (playerTeam && playerTeam === getWinner(teamsData)) ? "Win" : "Lose";
         else
             matchResult = 'N/A'; 

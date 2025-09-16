@@ -1,13 +1,13 @@
 @import url(https://fonts.googleapis.com/css?family=Poppins:400,500,600,700|Rubik:400,500,700);
 
-
 body {
     font-family: Rubik;
     background: linear-gradient(180deg, #036, #013);
     margin: 0;
     overflow:hidden;
-}
 
+    
+}
 
 /* Affichage du header */
 header {
@@ -29,15 +29,13 @@ main {
     height: 91vh;
 }
 
-
 /* Rightbar : Espace accueillant les données de la page (history ou player par exemple) */
 .right-bar {
     padding-top: 2%;
-    min-width: 85%;
-    max-width: 85%;
+    min-width: 80%;
+    max-width: 80%;
     background: radial-gradient(#39389d, #0a023b);
     border: 2px solid black;
-
 }
 
 

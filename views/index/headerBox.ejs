@@ -7,24 +7,33 @@
         <td>Durée</td>
     </tr> -->
 
+    <!-- Affiche la date et l'heure du match joué -->
     <div class="timestamp">
-        <%= match.timestamp[1] %>
-        <%= match.timestamp[2] %>
+        <span id="date"><%= match.timestamp[1] %></span>
+        <br>
+        <span id="hour"><%= match.timestamp[2] %></span>
     </div>
     
-    <div class="scoreResult">
-        <div class="scoreWinner">
-            <strong>
-                <%= match.winner %>
-            </strong>
-            ( <%= match.teamsData[match.winner]['goals'] %> )
+    <!-- Affiche le résultat du score dans des boxes     -->
+    <!--                                                 -->
+    <!-- Le style permet d'afficher plus ou moins grosse -->
+    <!-- la barre en fonction de l'équipe gagnante       -->
+    <%
+        const team0Class = match.teams[0] === match.winner ? 'team-winner' : 'team-loser';
+        const team1Class = match.teams[1] === match.winner ? 'team-winner' : 'team-loser';
+        const team0Width = match.teamsData[match.teams[0]]['goals'] > match.teamsData[match.teams[1]]['goals'] ? 'width:54%;' : 'width:44%;';
+        const team1Width = match.teamsData[match.teams[1]]['goals'] > match.teamsData[match.teams[0]]['goals'] ? 'width:54%;' : 'width:44%;';
+    %>
+
+    
+    <div class="teams-score">
+        <div class="team0 <%= team0Class %>" style="<%= team0Width %>">
+            <p class="name"><%= match.teams[0] %></p>
+            <p class="goals"><%= match.teamsData[match.teams[0]]['goals'] %></p>
         </div>
-        
-        <div class="scoreLoser">
-            ( <%= match.teamsData[match.loser]['goals'] %> )
-            <strong>
-                <%= match.loser %>
-            </strong>
+        <div class="team1 <%= team1Class %>" style="<%= team1Width %>">
+            <p class="goals"><%= match.teamsData[match.teams[1]]['goals'] %></p>
+            <p class="name"><%= match.teams[1] %></p>
         </div>
     </div>
 
@@ -35,6 +44,7 @@
         <span class="mvp-result" style="background: transparent"></span>
     <% } %>
 
+    <!-- Affiche le résultat de la partie selon le joueur rentré dans le .env -->
     <% if (match.matchResult === "Win") {%>
         <div class="scoreResultStatus WinText">WIN</div>
     <% } else if (match.matchResult === "Lose") { %>

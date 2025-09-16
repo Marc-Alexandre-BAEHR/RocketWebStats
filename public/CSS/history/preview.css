@@ -1,10 +1,25 @@
+/* Conteneur, contient la preview et le content */
+.match-background {
+    background: linear-gradient(0deg, rgb(5, 0, 15), rgb(5, 0, 21));
+    margin: 0 10%;
+    border-radius: 5px;
+    cursor: default;
+
+
+    /* pour empecher l'utilisateur de pouvoir sélectionner */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select:none;
+}
+
 /* Contient uniquement la preview */
 .match-header {
     background: linear-gradient(0deg, rgb(7, 0, 57), rgb(9, 0, 67)); /* Leger dégradé car uni = moche */
     width: auto;
     color: white;
     padding: 20px;
-    margin-bottom: 2%;
+    /* margin-bottom: 2%; */
     border-radius: 5px;
     justify-content: center;
     text-align: center;
@@ -16,13 +31,6 @@
     justify-content: space-between;
 }
 
-/* Conteneur, contient la preview et le content */
-.match-background {
-    background: linear-gradient(0deg, rgb(5, 0, 15), rgb(5, 0, 21));
-    margin: 0 10%;
-    border-radius: 5px;
-}
-
 .match-header td {
     outline: 1px solid black;
     border: 1px solid black;
@@ -30,18 +38,66 @@
 }
 
 
-/* Affichage des teams et du score */
-.scoreResult {
+/* Affichage des teams et du score [ 1. Ici c'est le rectangle bleu foncé ] */
+.teams-score {
     display: flex;
     width: 40%;
-    padding: 10px;
-    border-radius: 5px;
+    padding: 5px;
+    border-radius: 12px;
 
-    gap: 2px;
+    gap: 2%; /* 100 - longueur de chaque team = 100 - x*2 = gap%  */
     justify-content: center;
     margin: 0 auto;
     background: #070b19;
 }
+
+/* Style pour chaque team et score [ 2. Ici ce sont les rectangles bleus et oranges ] */
+.teams-score .team0 {
+    background: #061238;
+    border-radius: 5px 10px 10px 5px;
+}
+.teams-score .team1 {
+    background: #42210e;
+    border-radius: 10px 5px 5px 10px;
+}
+
+.teams-score .team0,
+.teams-score .team1 {
+    align-items: center;
+    display: flex;
+    width: 49%;
+}
+
+
+/* Style en cas de victoire ou défaite [ 3. Ici ce sont le style dans les rectangles ci dessus, en cas de win/lose ] */
+.teams-score .team-winner {
+    font-weight: bold;
+}
+
+.teams-score .team-loser {
+    font-style: italic;
+    color: #ccc;
+}
+
+/* Style pour les contenants du rectangle ( team et score ) pour chaque */
+.teams-score .name {
+    width: 80%;
+    margin: 5% auto;
+    background: blue;
+    background: transparent;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.teams-score .goals {
+    width: 10%;
+    margin: auto;
+    font-size: large;
+    background: purple;
+    background: #070b19;
+    background: transparent;
+}
+
 
 /* Affiche si la game a été remporté, perdu, ou si aucun joueur recherché n'est trouvé (N/A) */
 .scoreResultStatus {
@@ -49,32 +105,47 @@
     width: 10%;
 }
 
+/* Style pour le texte si perdu */
 .LoseText {
     background: #b30000;
     padding: 10px;
     border-radius: 5px;
 }
 
+/* Style pour le texte si gagné */
 .WinText {
     background: #00c300;
     padding: 10px;
     border-radius: 5px;
-
 }
 
+/* Style pour le texte si aucun joueur cherché n'est trouvé dans la partie */
 .NoNameText {
-    background: #dbdbdb;
+    background: radial-gradient(#dbdbdb, #aaa);
     padding: 10px;
     border-radius: 5px;
-
 }
 
-
+/* Affichage du style si le joueur est MVP */
+.mvp-result {
+    background: radial-gradient(#bfbe14, #8b8609);
+    margin-right: 3%;
+    min-width: 7%;
+    padding: 10px 0;
+    border-radius: 5px;
+    font-weight: bold;
+}
 
 /* Affichage de la date du match (situé à gauche) */
-
 .timestamp {
     display: block;
     width: 20%;
+}
 
+.timestamp #date {
+    font-weight: bold;
+}
+
+.timestamp #hour {
+    font-weight: normal;
 }
