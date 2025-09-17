@@ -1,0 +1,29 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:400,500,600,700|Rubik:400,500,700);
+
+body {
+    background: #a00;
+    font-family: Rubik;
+    margin-left: 5%;
+    margin-right: 5%;
+    display: block;
+}
+
+header {
+    background: black;
+    margin: 1vh auto;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    padding: 5vh 0;
+    border-radius: 20px;
+}
+
+.content {
+    background: #dbdbdb;
+    color: black;
+    display: block;
+    margin: 0 auto;
+    padding: 2% 7%;
+    border-radius: 20px;
+    height: 75vh;
+}

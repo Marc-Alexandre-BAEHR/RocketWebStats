@@ -26,15 +26,23 @@ app.get("/", async (req, res) => {
     try {
         // récupérer le tableau creer dans Js/getMatchData.js, pour l'envoyer dans le fichier index.jes (page principale du site)
         const matches = await generateJSON();
-        console.log(process.env.NICKNAME);
-
         const PlayerStats = {nickname: process.env.NICKNAME};
-
         res.render("index", { matches: matches.reverse(), PlayerStats: PlayerStats });
     } catch (err) {
-        console.error(err);
-        res.status(500).send(err);
+        res.render("errorpage", { err: err.message, title: 'Erreur BackEnd' });
     }
+});
+
+
+
+// Middleware utilisé pour récupérer les erreurs frontend uniquement
+app.use((err, req, res, next) => {
+    console.error("Erreur captée :", err.stack);
+    res.status(500).render("errorpage", {
+        title: "Erreur FrontEnd",
+        message: err,
+        stack: err.stack
+    });
 });
 
 

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/CSS/error.css">
+    <title>RL History - Error</title>
+</head>
+
+<body>
+    <header> <%= title %> </header>
+    <pre class="content" id="ErrorContent"></pre>
+</body>
+
+<script>
+    const divToReplace = document.getElementById('ErrorContent');
+    const message = <%- JSON.stringify(stack) %>;
+    divToReplace.innerHTML = message;
+</script>
+</html>

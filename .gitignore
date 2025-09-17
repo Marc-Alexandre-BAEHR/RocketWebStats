@@ -1,9 +1,15 @@
+# Fichier d'environnement
 .env
 
+# Fichiers et dossiers utilisé par npm
 package.json
 package-lock.json
 node_modules/
 
+# Fichier contenant les informations du .json,
+# et masque les fichiers de jeu
 matches.json
+game_stats_*
 
+# Fichiers de test en EJS
 views/layout/*test*.ejs
