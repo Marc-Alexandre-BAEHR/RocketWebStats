@@ -8,7 +8,8 @@ const express = require("express");
 const app = express();
 
 // fichiers crées
-const { generateJSON } = require("./Js/getMatchData.js");
+const { generateJSON }              = require("./Js/getMatchData.js");
+const { getPlayerDataByNickname }   = require("./Js/getPlayerData.js");
 const PORT = 5500;
 
 
@@ -25,7 +26,11 @@ app.use(express.static("public"));
 // Page d'accueil
 app.get("/", async (req, res) => {
     try {
-        res.render("index");
+        // Permet d'utiliser temporairement le nickname dans les fichiers .ejs
+        const PlayerDatas = {nickname: process.env.NICKNAME};
+        res.render("index", {
+            PlayerDatas: PlayerDatas
+        });
     } catch(err) {
         res.render("errorpage", { err: err.message, title: 'Erreur BackEnd' });
     }
@@ -36,8 +41,13 @@ app.get("/history", async (req, res) => {
     try {
         // récupérer le tableau creer dans Js/getMatchData.js, pour l'envoyer dans le fichier index.jes (page principale du site)
         const matches = await generateJSON();
-        const PlayerStats = {nickname: process.env.NICKNAME};
-        res.render("history", { matches: matches.reverse(), PlayerStats: PlayerStats });
+
+        // Permet d'utiliser temporairement le nickname dans les fichiers .ejs
+        const PlayerDatas = {nickname: process.env.NICKNAME};
+        res.render("history", { 
+            matches: matches.reverse(), 
+            PlayerDatas: PlayerDatas 
+        });
     } catch (err) {
         res.render("errorpage", { err: err.message, title: 'Erreur BackEnd' });
     }
@@ -46,7 +56,17 @@ app.get("/history", async (req, res) => {
 // Route pour afficher les données d'un joueur
 app.get("/player", async (req, res) => {
     try {
-        res.render("player.ejs");
+        // Permet d'utiliser temporairement le nickname dans les fichiers .ejs
+        const PlayerDatas = {nickname: process.env.NICKNAME};
+
+        // Permet de formatter les données récupérer dans le .json précedemment pour
+        // pouvoir les afficher en fonction du joueur
+        const PlayerStats = getPlayerDataByNickname(PlayerDatas.nickname);
+
+        res.render("player.ejs", {
+            PlayerDatas: PlayerDatas,
+            PlayerStats: PlayerStats
+        });
     } catch (err) {
         res.render("errorpage", { err: err.message, title: 'Erreur BackEnd' });
     }

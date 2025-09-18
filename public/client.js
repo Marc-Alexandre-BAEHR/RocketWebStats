@@ -5,6 +5,7 @@ function toggleDetails(MatchID) {
     } else {
         details.classList.add('active');
     }
+    console.log("MatchID Got : ", MatchID);
 }
 
 function getPageByOnClick(element) {

@@ -9,10 +9,11 @@
     <link rel="stylesheet" href="/CSS/styles.css">
     <link rel="stylesheet" href="/CSS/table.css">
     <link rel="stylesheet" href="/CSS/sidebar.css">
+    <link rel="stylesheet" href="/CSS/player/player.css">
 </head>
 
 <body>
-    <!-- Display the header-->
+    <!-- Affichage du header-->
     <header>
         <h1>Rocket League History</h1>
     </header>
@@ -21,7 +22,12 @@
         <!-- Include de la sidebar -->
         <%- include('layout/sidebar.ejs') %>
 
-        <h1>>Player</h1>
+
+        <!-- Include des informations globales du joueur -->
+        <%- include('player/globalInformations.ejs', {
+            PlayerStats:PlayerStats
+        }); %>
+
 
 
     </main>

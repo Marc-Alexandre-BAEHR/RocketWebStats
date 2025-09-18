@@ -6,27 +6,27 @@
     <title>RL WebStats - History</title>
     <link rel="shortcut icon" href="#">
     
-    <link rel="stylesheet" href="/CSS/styles.css">
-    <link rel="stylesheet" href="/CSS/table.css">
-
-    <link rel="stylesheet" href="/CSS/history/preview.css">
-    <link rel="stylesheet" href="/CSS/history/content.css">
-    <link rel="stylesheet" href="/CSS/history.css">
     <link rel="stylesheet" href="/CSS/sidebar.css">
+    <link rel="stylesheet" href="/CSS/styles.css">
+    
+    <link rel="stylesheet" href="/CSS/history/content.css">
+    <link rel="stylesheet" href="/CSS/history/preview.css">
+    <link rel="stylesheet" href="/CSS/history/table.css">
 </head>
 
 <body>
-    <!-- Display the header-->
+    <!-- Affichage du header-->
     <header>
         <h1>Rocket League History</h1>
     </header>
 
-    <!-- Display flex for positionning the sidebar (left) and main content (right) -->
     <main> 
+        <!-- Include de la sidebar -->
         <%- include('layout/sidebar.ejs') %>
 
 
-        <section class="right-bar match-history-content">
+        <!-- Affichage de la section droite (pour voir l'historique des matchs) -->
+        <section class="right-bar">
             <% if (matches.length===0) { %>
                 <p>No match found.</p>
             <% } else { %>
@@ -41,7 +41,5 @@
     </main>
 
 </body>
-
 <script src="client.js"></script>
-
 </html>

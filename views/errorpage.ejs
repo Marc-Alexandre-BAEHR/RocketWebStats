@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="#">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/CSS/error.css">
     <title>RL History - Error</title>
@@ -9,12 +10,7 @@
 
 <body>
     <header> <%= title %> </header>
-    <pre class="content" id="ErrorContent"></pre>
+    <pre id="ErrorContent"><%= err || message %></pre>
 </body>
 
-<script>
-    const divToReplace = document.getElementById('ErrorContent');
-    const message = <%- JSON.stringify(stack) %>;
-    divToReplace.innerHTML = message;
-</script>
 </html>

@@ -33,10 +33,14 @@ main {
 /* Rightbar : Espace accueillant les données de la page (history ou player par exemple) */
 .right-bar {
     padding-top: 2%;
-    min-width: 80%;
-    max-width: 80%;
+    width: calc(80% - 5px);
     background: radial-gradient(#39389d, #0a023b);
     border: 2px solid black;
+    display: block;
+    overflow: auto;
+
+    scrollbar-width: 5px;
+    scrollbar-color: aqua aqua;
 }
 
 

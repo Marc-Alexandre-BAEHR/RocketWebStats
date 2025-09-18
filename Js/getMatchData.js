@@ -11,7 +11,7 @@ const { getTeamsData }          = require("./matchData/getTeamsData.js")
 const { getMVP }                = require("./matchData/getMVP.js");
 const { convertTimestampDate }  = require("./matchData/convertTimestamp.js");
 const { convertPlatform }       = require("./matchData/convertPlatform.js");
-const { parseCSV }              = require("./parseCSV.js");
+const { parseCSV }              = require("./matchData/parseCSV.js");
 
 
 

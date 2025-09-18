@@ -28,7 +28,6 @@
     width: 70%;
     margin-left: calc((100% - 70%) / 2); /* Max - width / 2 (2 pour chaque côté) = margin */
     margin-right: calc((100% - 70%) / 2); /* Max - width / 2 (2 pour chaque côté) = margin */
-    margin-top: 5vh;
     height: 5vh;
     text-align: center;
     border-radius: 5px;
@@ -52,6 +51,19 @@
     opacity: 1;
 }
 
-qsdqsd {
-    color: blue;
+.left-bar p {
+    text-align: justify;
+    max-width: 80%;
+    margin: 1vh auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.left-bar hr {
+    background-color: black;
+    color: black;
+    background: black;
+    height: 2px;
+    border: none;
+    margin: 2.5vh 0;
 }
