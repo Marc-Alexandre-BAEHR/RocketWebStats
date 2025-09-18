@@ -21,17 +21,36 @@ app.use(express.static("public"));
 
 
 
-// Fonction utilisée lors de la visite sur la page de Root du serveur
+// - Fonction utilisée lors de la visite sur les pages du serveur
+// Page d'accueil
 app.get("/", async (req, res) => {
+    try {
+        res.render("index");
+    } catch(err) {
+        res.render("errorpage", { err: err.message, title: 'Erreur BackEnd' });
+    }
+});
+
+// Route pour afficher les parties jouées des fichiers récupérés
+app.get("/history", async (req, res) => {
     try {
         // récupérer le tableau creer dans Js/getMatchData.js, pour l'envoyer dans le fichier index.jes (page principale du site)
         const matches = await generateJSON();
         const PlayerStats = {nickname: process.env.NICKNAME};
-        res.render("index", { matches: matches.reverse(), PlayerStats: PlayerStats });
+        res.render("history", { matches: matches.reverse(), PlayerStats: PlayerStats });
     } catch (err) {
         res.render("errorpage", { err: err.message, title: 'Erreur BackEnd' });
     }
-});
+})
+
+// Route pour afficher les données d'un joueur
+app.get("/player", async (req, res) => {
+    try {
+        res.render("player.ejs");
+    } catch (err) {
+        res.render("errorpage", { err: err.message, title: 'Erreur BackEnd' });
+    }
+})
 
 
 

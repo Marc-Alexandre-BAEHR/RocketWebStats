@@ -7,9 +7,51 @@
     background: #101733;
     color: white;
     height: auto;
+    border-right: 3px solid black;
+    justify-content: center;
+    display: block;
+}
+
+.left-bar h1{
+    text-align: center;
+    background: darkblue;
+    width: 80%;
+    margin: 1vh auto;
 }
 
 .left-bar button {
-    margin: auto;
-    display: flex;
+
+    background: black;
+    color: white;
+    outline: 1px solid white;
+    border: none;
+    width: 70%;
+    margin-left: calc((100% - 70%) / 2); /* Max - width / 2 (2 pour chaque côté) = margin */
+    margin-right: calc((100% - 70%) / 2); /* Max - width / 2 (2 pour chaque côté) = margin */
+    margin-top: 5vh;
+    height: 5vh;
+    text-align: center;
+    border-radius: 5px;
+    opacity: 0.7;
+}
+
+.left-bar button:hover {
+    background: #dbdbdb;
+    color: black;
+    opacity: 1;
+    transition: ease 1s;
+}
+
+.left-bar button::selection {
+    outline: 1px solid red;
+}
+
+.left-bar button.ActivePage {
+    background: #dbdbdb;
+    color: black;
+    opacity: 1;
+}
+
+qsdqsd {
+    color: blue;
 }
