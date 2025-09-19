@@ -1,3 +1,5 @@
+// const { getPlayerDataByNickname } = require("../Js/getPlayerData");
+
 function toggleDetails(MatchID) {
     const details = document.getElementById('details_'+MatchID);
     if (details.classList.contains('active')) {
@@ -5,7 +7,7 @@ function toggleDetails(MatchID) {
     } else {
         details.classList.add('active');
     }
-    console.log("MatchID Got : ", MatchID);
+    // console.log("MatchID Got : ", MatchID);
 }
 
 function getPageByOnClick(element) {
@@ -23,7 +25,26 @@ const myLocation = location.href.slice(location.origin.length, location.href.len
 const elements = document.querySelectorAll('#left-sidebar-id button');
 for (const element of elements) {
     element.classList.remove('ActivePage');
-    if (getPageByOnClick(element)===myLocation) {
+    if (getPageByOnClick(element) === myLocation) {
         element.classList.add('ActivePage');
     }
+}
+
+// Method to get the time in real-time 
+// 'sidebar-time';
+const DivTime = document.getElementById('sidebar-time');
+
+function refresh() {
+    var date = new Date();
+    var str = date.getHours();
+    str += ':'+(date.getMinutes()<10?'0':'')+date.getMinutes();
+    str += ':'+(date.getSeconds()<10?'0':'')+date.getSeconds();
+    DivTime.innerHTML = `${str} - Paris, France`;
+}
+refresh();
+window.onload = function() {
+    refresh();
+    setInterval(() => {
+        refresh();
+    }, 1000);
 }

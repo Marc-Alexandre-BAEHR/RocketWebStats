@@ -1,6 +1,8 @@
 <sidebar class="left-bar" id="left-sidebar-id">
 
     <h1>Welcome</h1>
+    <h3><%= nickname %></h3>
+    <p id="sidebar-time">00:00.00</p>
     <hr>
 
     <button onclick="window.location.href='/'">Home</button>
@@ -13,7 +15,7 @@
     
     <hr>
 
-    <button onclick="window.location.href='/player'"><%= PlayerDatas.nickname %></button>
+    <button onclick="window.location.href='/player'">Your Profile</button>
     <p>Display statistics about your profile for the saved games</p>
 
 </sidebar>

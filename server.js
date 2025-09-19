@@ -8,10 +8,9 @@ const express = require("express");
 const app = express();
 
 // fichiers crées
-const { generateJSON }              = require("./Js/getMatchData.js");
-const { getPlayerDataByNickname }   = require("./Js/getPlayerData.js");
+const { generateJSON }    = require("./Js/getMatchData.js");
+const { getPlayerData }   = require("./Js/getPlayerData.js");
 const PORT = 5500;
-
 
 
 // Utilisation des fichiers .ejs, stocker dans le dossier views/
@@ -27,9 +26,8 @@ app.use(express.static("public"));
 app.get("/", async (req, res) => {
     try {
         // Permet d'utiliser temporairement le nickname dans les fichiers .ejs
-        const PlayerDatas = {nickname: process.env.NICKNAME};
         res.render("index", {
-            PlayerDatas: PlayerDatas
+            nickname: process.env.NICKNAME 
         });
     } catch(err) {
         res.render("errorpage", { err: err.message, title: 'Erreur BackEnd' });
@@ -43,11 +41,9 @@ app.get("/history", async (req, res) => {
         // pour l'envoyer dans le fichier index.jes (page principale du site)
         const matches = await generateJSON();
 
-        // Permet d'utiliser temporairement le nickname dans les fichiers .ejs
-        const PlayerDatas = {nickname: process.env.NICKNAME};
         res.render("history", { 
-            matches: matches.reverse(), 
-            PlayerDatas: PlayerDatas 
+            matches: matches, 
+            nickname: process.env.NICKNAME 
         });
     } catch (err) {
         res.render("errorpage", { err: err.message, title: 'Erreur BackEnd' });
@@ -58,15 +54,15 @@ app.get("/history", async (req, res) => {
 app.get("/player", async (req, res) => {
     try {
         // Permet d'utiliser temporairement le nickname dans les fichiers .ejs
-        const PlayerDatas = {nickname: process.env.NICKNAME};
+        const matches = await generateJSON();
 
         // Permet de formatter les données récupérer dans le .json précedemment pour
         // pouvoir les afficher en fonction du joueur
-        const PlayerStats = getPlayerDataByNickname(PlayerDatas.nickname);
+        const PlayerDatas = getPlayerData(process.env.NICKNAME, matches);
 
         res.render("player.ejs", {
             PlayerDatas: PlayerDatas,
-            PlayerStats: PlayerStats
+            nickname: process.env.NICKNAME 
         });
     } catch (err) {
         res.render("errorpage", { err: err.message, title: 'Erreur BackEnd' });
@@ -89,6 +85,5 @@ app.use((err, req, res, next) => {
 
 // Pour lancer sur le port
 app.listen(PORT, () => {
-    console.log(`Ok Garmin, ouvre le serveur`);
-    console.log(`http://localhost:${PORT}`);
+    console.log(`-=-=-=-=-=- OUVERTURE -=-=- ${PORT} -=-=-=-=-=-`);
 });

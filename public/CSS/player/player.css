@@ -1,7 +1,26 @@
 .group {
-    background: blue;
-    display: flex;
+    background: linear-gradient(0deg, rgb(7, 0, 57), rgb(9, 0, 67)); 
     color: white;
-    outline: 1px solid black;
+
+    display: flex;
+    padding: 20px;
+    width: 33%;
     border-radius: 5px;
+}
+
+
+.match-header {
+    background: linear-gradient(0deg, rgb(7, 0, 57), rgb(9, 0, 67)); /* Leger dégradé car uni = moche */
+    width: auto;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+
+    vertical-align: middle;
+
+    display: flex;
+    justify-content: space-between;
 }

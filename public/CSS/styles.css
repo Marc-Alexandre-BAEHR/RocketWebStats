@@ -36,11 +36,16 @@ main {
     width: calc(80%);
     background: radial-gradient(#39389d, #0a023b);
     border: 2px solid black;
-    display: block;
     overflow: auto;
 
     scrollbar-width: 5px;
     scrollbar-color: #0059ff transparent;
 }
 
+#block {
+    display: block;
+}
 
+#flex {
+    display: flex;
+}
