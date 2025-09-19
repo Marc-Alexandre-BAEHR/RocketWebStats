@@ -18,6 +18,12 @@ const { parseCSV }              = require("./matchData/parseCSV.js");
 // Fonction pour générer le .json et envoyé les données au serveur, pour ensuite les rendre sur le site
 async function generateJSON() {
 
+    // Variables :
+    // -> Nombre de matches
+    let games_found     = 0; // -> Parties déjà existantes
+    let new_games       = 0; // -> Parties analysées
+    let total_games     = 0; // -> Total des parties
+
     // Psedonyme du joueur à suivre
     const nickname = process.env.NICKNAME;
 
@@ -26,6 +32,9 @@ async function generateJSON() {
     
     // tableau qui stockera les dictionnaires de chaque matchs avec leurs statistiques
     let matches = [];
+    if (fs.existsSync(jsonPathMatch)) {
+        matches = JSON.parse(fs.readFileSync(jsonPathMatch, "utf8"));
+    }
 
     // définit l'ID à 1 car on compte le nombre de match joué, excludant donc le 0
     let id = 1;
@@ -33,11 +42,22 @@ async function generateJSON() {
     // parcours chaque fichiers pour récuperer les informations du match
     // (score, buts inscris, victoire ou défaite, )
     for (const file of files) {
+        total_games++;
+
+        // regarde d'abord si le fichier est déjà présent dans le .json
+        // évite de devoir regarder tout les fichiers
+        if (matches.some(m => m.filename === file)) {
+            games_found++;
+            continue;
+        } else {
+            new_games++;
+        }
+
 
         // récupération des données de chaque fichier, dans data
         const data = await parseCSV(path.join(folderPath, file));
 
-        // 
+        // récupération des données des 2 teams (cumul des scores des joueurs de chaque team)
         const teamsData = getTeamsData(data);
 
         // récupère la team du joueur, et détermine grace à l'équipe si le joueur a gagné ou non
@@ -74,6 +94,12 @@ async function generateJSON() {
     // écriture du tableau dans le fichier JSON
     fs.writeFileSync(jsonPathMatch, JSON.stringify(matches, null, 2), "utf8");
     
+    // log dans la console sur les parties
+    console.log(`Already: ${games_found}`);
+    console.log(`New    : ${new_games}`);
+    console.log(`Total  : ${total_games}`);
+
+
     // renvoie du tableau pour povoir l'utiliser dans le BackEnd sans devoir relire le fichier
     return matches;
 }

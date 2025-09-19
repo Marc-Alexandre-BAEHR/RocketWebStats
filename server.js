@@ -39,7 +39,8 @@ app.get("/", async (req, res) => {
 // Route pour afficher les parties jouées des fichiers récupérés
 app.get("/history", async (req, res) => {
     try {
-        // récupérer le tableau creer dans Js/getMatchData.js, pour l'envoyer dans le fichier index.jes (page principale du site)
+        // récupérer le tableau creer dans Js/getMatchData.js,
+        // pour l'envoyer dans le fichier index.jes (page principale du site)
         const matches = await generateJSON();
 
         // Permet d'utiliser temporairement le nickname dans les fichiers .ejs

@@ -10,6 +10,7 @@ node_modules/
 # et masque les fichiers de jeu
 matches.json
 game_stats_*
+logs*
 
 # Fichiers de test en EJS
 views/layout/*test*.ejs
