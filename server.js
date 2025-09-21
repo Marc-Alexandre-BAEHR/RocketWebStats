@@ -42,7 +42,7 @@ app.get("/history", async (req, res) => {
         const matches = await generateJSON();
 
         res.render("history", { 
-            matches: matches, 
+            matches: matches.reverse(),
             nickname: process.env.NICKNAME 
         });
     } catch (err) {

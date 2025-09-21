@@ -48,9 +48,11 @@ async function generateJSON() {
         // évite de devoir regarder tout les fichiers
         if (matches.some(m => m.filename === file)) {
             games_found++;
+            // console.log('skipping -> ', file);
             continue;
         } else {
             new_games++;
+            console.log('[ NEW FILE ANALYSED ]  -> ', file);
         }
 
 
@@ -92,18 +94,8 @@ async function generateJSON() {
     }
 
 
-    matches.reverse();
-
-
     // écriture du tableau dans le fichier JSON
     fs.writeFileSync(jsonPathMatch, JSON.stringify(matches, null, 2), "utf8");
-    
-    // log dans la console sur les parties
-    /*
-    console.log(`Already: ${games_found}`);
-    console.log(`New    : ${new_games}`);
-    console.log(`Total  : ${total_games}`);
-    */
 
     // renvoie du tableau pour povoir l'utiliser dans le BackEnd sans devoir relire le fichier
     return matches;
