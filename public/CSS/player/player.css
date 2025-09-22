@@ -1,26 +1,39 @@
+.PlayerGlobalClass {
+    background: red;
+    background: transparent;
+    color: white;
+    text-align: center;
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr); /* 4 colonnes fixes */
+    gap: 15px;                             /* espace entre blocs et bords */
+    
+    width: 80vw;
+    padding: 20px;
+    border-radius: 5px;
+}
+
 .group {
     background: linear-gradient(0deg, rgb(7, 0, 57), rgb(9, 0, 67)); 
     color: white;
 
-    display: flex;
+    display: block;
+    justify-content: center;
+    align-items: center;
+
     padding: 20px;
-    width: 33%;
     border-radius: 5px;
 }
 
+.group h1 {
+    background: yellowgreen;
+    background: transparent;
+    font-size: 20px;
+    margin-top: 0;
+    left: 0px;
+    position:static;
+}
 
-.match-header {
-    background: linear-gradient(0deg, rgb(7, 0, 57), rgb(9, 0, 67)); /* Leger dégradé car uni = moche */
-    width: auto;
-    color: white;
-    padding: 20px;
-    border-radius: 5px;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-
-    vertical-align: middle;
-
-    display: flex;
-    justify-content: space-between;
+.group p {
+    background: lightblue;
+    background: transparent
 }

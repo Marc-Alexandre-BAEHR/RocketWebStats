@@ -1,9 +1,26 @@
 
-<div>
-    Informations
+<div id="PlayerGlobalId" class="PlayerGlobalClass">
 
-    <div class="group nickname"> <%= nickname %></div>
-    <div class="group ??      "> ... </div>
+    <div class="group nickname">
+        <h1>Nickname</h1>
+        <p><%= PlayerDatas.nickname %></p>
+    </div>
+
+    <div class="group gameplayed">
+        <h1>Games Played</h1>
+        <p><%= PlayerDatas.games_played %></p>
+    </div>
+
+    <div class="group winrate">
+        <h1>WIN Rate</h1>
+        <p><%= PlayerDatas.winrate %></p>
+    </div>
+
+    <div class="group mvprate">
+        <h1>MVP Rate</h1>
+        <p><%= PlayerDatas.mvprate %></p>
+    </div>
+
     <!-- à completer -->
 
 </div>
