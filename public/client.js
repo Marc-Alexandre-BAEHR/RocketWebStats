@@ -37,14 +37,17 @@ const DivTime = document.getElementById('sidebar-time');
 function refresh() {
     var date = new Date();
     var str = date.getHours();
+    var strMS = "";
     str += ':'+(date.getMinutes()<10?'0':'')+date.getMinutes();
     str += ':'+(date.getSeconds()<10?'0':'')+date.getSeconds();
-    DivTime.innerHTML = `${str} - Paris, France`;
+    strMS += '.'+(date.getMilliseconds()<10?'0':'')+date.getMilliseconds();
+
+    DivTime.innerHTML = `<br>${str}<span class="timeMS">${strMS}</span><br>Paris, France`;
 }
 refresh();
 window.onload = function() {
     refresh();
     setInterval(() => {
         refresh();
-    }, 1000);
+    }, 10);
 }

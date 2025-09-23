@@ -54,27 +54,27 @@ function getPlayerData(nickname, matches) {
     let total_score = 0;
     
     // - 3. Buts
-    let total_goals = 0;
     let avg_goals = 0;
+    let total_goals = 0;
     
     // - 3.5 Ratio Tirs/Buts
     let goal_ratio = 0;
 
     // - 4. Tirs
-    let total_shots = 0;
     let avg_shots = 0;
+    let total_shots = 0;
     
     // - 5. Passes décisives
-    let total_assits = 0;
     let avg_assists = 0;
+    let total_assits = 0;
 
     // - 6. Arrêts
-    let total_saves = 0;
     let avg_saves = 0;
+    let total_saves = 0;
 
     // - 7. démolitions
-    let total_demos = 0;
     let avg_demos = 0;
+    let total_demos = 0;
     
     
     
