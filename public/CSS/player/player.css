@@ -1,12 +1,10 @@
 .GlobalGroup {
+    background: lightcoral;
     background: transparent;
-    background: red;
     color: white;
     text-align: center;
     display: flex; 
-    /* grid-template-columns: repeat(4, 1fr); */
-    
-    width: 80vw;
+    width: max-content;
     height: fit-content;
     padding: 20px;
     padding-top: 0;
@@ -14,23 +12,35 @@
 }
 
 .group {
-    width: 15%;
-    height: 100%;
-    gap: 20px;
+    background: linear-gradient(0deg, rgb(7, 0, 57), rgb(9, 0, 67)); 
+    color: white;
+    border-radius: 8px;
+    padding: 15px;
+    position: relative;
     border-radius: 5px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+    height: max-content;
+    position: relative;
+    margin-right: 20px;
 }
 
 .group .title {
     background: yellowgreen;
     background: transparent;
-    font-size: x-small;
     margin: 0 auto;
     height: 40%;
     margin-left: 0;
     margin-top: 0;
-    padding-left: 10px;
     padding-top: 10px;
     text-align: left;
+    position: static;
+    top: 10px;
+    left: 10px;
+    font-size: 0.8rem;
+    opacity: 0.8;
 }
 
 .group .datas {
@@ -39,31 +49,7 @@
     background: lightblue;
     background: transparent;
     margin:  0;
-}
-
-
-.group {
-    background: linear-gradient(0deg, rgb(7, 0, 57), rgb(9, 0, 67)); 
-    color: white;
-    border-radius: 8px;
-    padding: 15px;
-    position: relative;         /* pour positionner le titre */
-    
-    display: flex;
-    flex-direction: column;     /* contenu empilé */
-    justify-content: center;    /* centre verticalement */
-    align-items: center;        /* centre horizontalement */
-}
-
-.group .title {
-    position: absolute;         /* pour le mettre en haut à gauche */
-    top: 10px;
-    left: 10px;
-    font-size: 0.8rem;          /* petit texte */
-    opacity: 0.8;               /* un peu atténué */
-}
-
-.group .datas {
-    font-size: 2rem;            /* gros chiffre au centre */
+    font-size: 2rem;
+    text-align: left;
     font-weight: bold;
 }

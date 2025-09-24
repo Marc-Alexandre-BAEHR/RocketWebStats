@@ -152,8 +152,16 @@ function getPlayerData(nickname, matches) {
     const PlayerDatas = {
         nickname: nickname,
         games_played: games_played,
-        winrate: games_winrate,
-        mvprate: games_mvprate
+        games_won:games_won,
+        games_mvp:games_mvp,
+        games_winrate: games_winrate,
+        total_goals:total_goals,
+        total_saves:total_saves,
+        total_shots:total_shots
+
+
+
+
 
     }
     
