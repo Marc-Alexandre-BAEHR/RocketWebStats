@@ -16,10 +16,8 @@ function games_status(game, nickname) {
 
 function game_nickname_played(game, nickname) {
     for (const player of game.players) {
-        if (player.PlayerName === nickname) {
-            console.log(player.PlayerName, 'Found');
+        if (player.PlayerName === nickname)
             return true;
-        }
     }
     console.log('didnt found player for ', game.id);
     return false;
@@ -137,32 +135,48 @@ function getPlayerData(nickname, matches) {
 
     // Logs
 
-    
-    console.log('-=-=- STATS -=-=-');
-    console.log(`Games : Played=${games_played}, Win=${games_won}, Rate=${games_winrate}, MVP=${games_mvp},  MVP%=${games_mvprate}`);
-    console.log(`Scores : ${total_score}    [${avg_score}]`);
-    console.log(`Goals  : ${total_goals}    [${avg_goals}] - Goal Ratio : ${goal_ratio}`);
-    console.log(`Shots  : ${total_shots}    [${avg_shots}]`);
-    console.log(`Assists: ${total_assits}   [${avg_assists}]`);
-    console.log(`Saves  : ${total_saves}    [${avg_saves}]`);
-    console.log(`Demos  : ${total_demos}    [${avg_demos}]`);
-    console.log('-=-=-=-=-=-=-=-=-');
+    //console.log('-=-=- STATS -=-=-');
+    // console.log(`Games : Played=${games_played}, Win=${games_won}, Rate=${games_winrate}, MVP=${games_mvp},  MVP%=${games_mvprate}`);
+    // console.log(`Scores : ${total_score}    [${avg_score}]`);
+    // console.log(`Goals  : ${total_goals}    [${avg_goals}] - Goal Ratio : ${goal_ratio}`);
+    // console.log(`Shots  : ${total_shots}    [${avg_shots}]`);
+    // console.log(`Assists: ${total_assits}   [${avg_assists}]`);
+    // console.log(`Saves  : ${total_saves}    [${avg_saves}]`);
+    // console.log(`Demos  : ${total_demos}    [${avg_demos}]`);
+    // console.log('-=-=-=-=-=-=-=-=-');
     
 
     const PlayerDatas = {
         nickname: nickname,
-        games_played: games_played,
-        games_won:games_won,
-        games_mvp:games_mvp,
-        games_winrate: games_winrate,
-        total_goals:total_goals,
-        total_saves:total_saves,
-        total_shots:total_shots
-
-
-
-
-
+        game: {
+            played: games_played,
+            win: games_won,
+            rate: games_winrate
+        },
+        mvp: {
+            total: games_mvp,
+            rate: games_mvprate
+        },
+        goal: {
+            total: total_goals,
+            avg: avg_goals
+        },
+        assist: {
+            total: total_assits,
+            avg: avg_assists
+        },
+        save: {
+            total: total_saves,
+            avg: avg_saves
+        },
+        shot: {
+            total: total_shots,
+            avg: avg_shots
+        },
+        demo: {
+            total: total_demos,
+            avg: avg_demos
+        }
     }
     
     // console.log(PlayerDatas);

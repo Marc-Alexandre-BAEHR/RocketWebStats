@@ -1,71 +1,123 @@
-<div id="PlayerStatsID" class="GlobalGroup">
+<div class="AllStats">
 
-    <div class="group">
-        <div class="title">
-            Games Played
-        </div>
-        <div class="datas">
-            <%= PlayerDatas.games_played %>
+    <div class=MainGroup>
+
+        <div id="PlayerStatsID" class="GlobalGroup">
+            <div class="group">
+                <div class="title">
+                    Goals
+                </div>
+                <div class="datas">
+                    <%= PlayerDatas.goal.total %>
+                </div>
+            </div>
+
+            <div class="group">
+                <div class="title">
+                    Average
+                </div>
+                <div class="datas">
+                    <%= PlayerDatas.goal.avg %>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="group">
-        <div class="title">
-            Wins
-        </div>
-        <div class="datas">
-            <%= PlayerDatas.games_won %>
+
+    <div class=MainGroup>
+
+        <div id="PlayerStatsID" class="GlobalGroup">
+            <div class="group">
+                <div class="title">
+                    Assists
+                </div>
+                <div class="datas">
+                    <%= PlayerDatas.assist.total %>
+                </div>
+            </div>
+
+            <div class="group">
+                <div class="title">
+                    Average
+                </div>
+                <div class="datas">
+                    <%= PlayerDatas.assist.avg %>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="group">
-        <div class="title">
-            MVP
-        </div>
-        <div class="datas">
-            <%= PlayerDatas.games_mvp %>
+
+
+    <div class=MainGroup>
+
+        <div id="PlayerStatsID" class="GlobalGroup">
+            <div class="group">
+                <div class="title">
+                    Saves
+                </div>
+                <div class="datas">
+                    <%= PlayerDatas.save.total %>
+                </div>
+            </div>
+
+            <div class="group">
+                <div class="title">
+                    Average
+                </div>
+                <div class="datas">
+                    <%= PlayerDatas.save.avg %>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="group">
-        <div class="title">
-            WinRate
-        </div>
-        <div class="datas">
-            <%= PlayerDatas.games_winrate %>
-        </div>
-    </div>
-</div>
 
 
+    <div class=MainGroup>
 
+        <div id="PlayerStatsID" class="GlobalGroup">
+            <div class="group">
+                <div class="title">
+                    Total
+                </div>
+                <div class="datas">
+                    <%= PlayerDatas.shot.total %>
+                </div>
+            </div>
 
-<div id="PlayerStatsID" class="GlobalGroup">
-
-    <div class="group">
-        <div class="title">
-            Goals
-        </div>
-        <div class="datas">
-            <%= PlayerDatas.total_goals %>
-        </div>
-    </div>
-
-    <div class="group">
-        <div class="title">
-            Saves
-        </div>
-        <div class="datas">
-            <%= PlayerDatas.total_saves %>
+            <div class="group">
+                <div class="title">
+                    Shots
+                </div>
+                <div class="datas">
+                    <%= PlayerDatas.shot.avg %>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="group">
-        <div class="title">
-            Shots
-        </div>
-        <div class="datas">
-            <%= PlayerDatas.total_shots %>
+    <div class=MainGroup>
+
+        <div id="PlayerStatsID" class="GlobalGroup">
+            <div class="group">
+                <div class="title">
+                    Demolitions
+                </div>
+                <div class="datas">
+                    <%= PlayerDatas.demo.total %>
+                </div>
+            </div>
+
+            <div class="group">
+                <div class="title">
+                    Average
+                </div>
+                <div class="datas">
+                    <%= PlayerDatas.demo.avg %>
+                </div>
+            </div>
         </div>
     </div>
+
 </div>

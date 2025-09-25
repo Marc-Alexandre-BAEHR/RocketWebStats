@@ -1,14 +1,16 @@
 .GlobalGroup {
     background: lightcoral;
     background: transparent;
+    outline: 1px solid blue;
     color: white;
     text-align: center;
     display: flex; 
     width: max-content;
-    height: fit-content;
-    padding: 20px;
-    padding-top: 0;
+    height: max-content;
+    padding: 0 20px;
     border-radius: 5px;
+    margin: 0 auto;
+    margin-bottom: 20px;
 }
 
 .group {
@@ -21,9 +23,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: max-content;
     height: max-content;
     position: relative;
+    margin: 20px 0;
     margin-right: 20px;
 }
 
@@ -52,4 +54,19 @@
     font-size: 2rem;
     text-align: left;
     font-weight: bold;
+}
+
+.MainGroup {
+    display: block;
+    /* background: #0000aa22; */
+    /* outline: 1px solid #00000050; */
+    border-radius: 3px;
+    width: 25%;
+    height: max-content;
+    color: white;
+    margin-left: 5%;
+}
+.AllStats {
+    display: flex;
+    flex-wrap: wrap;
 }
