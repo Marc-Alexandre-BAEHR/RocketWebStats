@@ -31,7 +31,7 @@ async function generateJSON() {
     const files = fs.readdirSync(folderPath).filter(f => f.endsWith(".csv"));
     
     // tableau qui stockera les dictionnaires de chaque matchs avec leurs statistiques
-    let matches = [];
+    let matches = [ new Date() ];
     if (fs.existsSync(jsonPathMatch)) {
         matches = JSON.parse(fs.readFileSync(jsonPathMatch, "utf8"));
     }
@@ -44,53 +44,60 @@ async function generateJSON() {
     for (const file of files) {
         total_games++;
 
-        // regarde d'abord si le fichier est déjà présent dans le .json
-        // évite de devoir regarder tout les fichiers
-        if (matches.some(m => m.filename === file)) {
-            games_found++;
-            // console.log('skipping -> ', file);
-            continue;
-        } else {
-            new_games++;
-            console.log('[ NEW FILE ANALYSED ]  -> ', file);
+        try {
+            
+            // regarde d'abord si le fichier est déjà présent dans le .json
+            // évite de devoir regarder tout les fichiers
+            if (matches.some(m => m.filename === file)) {
+                games_found++;
+                // console.log('skipping -> ', file);
+                continue;
+            } else {
+                new_games++;
+                console.log('[ NEW FILE ANALYSED ]  -> ', file);
+            }
+
+
+            // récupération des données de chaque fichier, dans data
+            const data = await parseCSV(path.join(folderPath, file));
+    
+            console.log(data);
+    
+            // récupération des données des 2 teams (cumul des scores des joueurs de chaque team)
+            const teamsData = getTeamsData(data);
+    
+            // récupère la team du joueur, et détermine grace à l'équipe si le joueur a gagné ou non
+            const playerTeam = data.find(p => p.PlayerName === nickname)?.TeamName;
+            
+            let matchResult = "";
+            if (data.find(p => p.PlayerName === nickname))
+                matchResult = (playerTeam && playerTeam === getWinner(teamsData)) ? "Win" : "Lose";
+            else
+                matchResult = 'N/A'; 
+    
+            // renvoie un dictionnaire de toute les données récupérés jusqu'a présent
+            // pour pouvoir les utiliser dans le .ejs
+            const match = {
+                id: id,
+                filename: file,
+                timestamp: convertTimestampDate(data[0].Timestamp),
+                teams: [...new Set(data.map(d => d.TeamName))],
+                teamsData,
+                platform: convertPlatform(data),
+                winner: getWinner(teamsData),
+                loser: getLoser(teamsData),
+                matchResult: matchResult,
+                duration: getMatchDuration(data),
+                mvp: getMVP(data),
+                players: data
+            };
+    
+            // augmente l'ID de 1 pour le prochain match, et ajoute le dictiononaire au tableau initialisé
+            id++;
+            matches.push(match);
+        } catch (err) {
+            console.error(err);
         }
-
-
-        // récupération des données de chaque fichier, dans data
-        const data = await parseCSV(path.join(folderPath, file));
-
-        // récupération des données des 2 teams (cumul des scores des joueurs de chaque team)
-        const teamsData = getTeamsData(data);
-
-        // récupère la team du joueur, et détermine grace à l'équipe si le joueur a gagné ou non
-        const playerTeam = data.find(p => p.PlayerName === nickname)?.TeamName;
-        
-        let matchResult = "";
-        if (data.find(p => p.PlayerName === nickname))
-            matchResult = (playerTeam && playerTeam === getWinner(teamsData)) ? "Win" : "Lose";
-        else
-            matchResult = 'N/A'; 
-
-        // renvoie un dictionnaire de toute les données récupérés jusqu'a présent
-        // pour pouvoir les utiliser dans le .ejs
-        const match = {
-            id: id,
-            filename: file,
-            timestamp: convertTimestampDate(data[0].Timestamp),
-            teams: [...new Set(data.map(d => d.TeamName))],
-            teamsData,
-            platform: convertPlatform(data),
-            winner: getWinner(teamsData),
-            loser: getLoser(teamsData),
-            matchResult: matchResult,
-            duration: getMatchDuration(data),
-            mvp: getMVP(data),
-            players: data
-        };
-
-        // augmente l'ID de 1 pour le prochain match, et ajoute le dictiononaire au tableau initialisé
-        id++;
-        matches.push(match);
     }
 
 

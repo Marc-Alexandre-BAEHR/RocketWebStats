@@ -1,5 +1,7 @@
 // const { getPlayerDataByNickname } = require("../Js/getPlayerData");
 
+const { generateJSON } = require("../Js/getMatchData");
+
 function toggleDetails(MatchID) {
     const details = document.getElementById('details_'+MatchID);
     if (details.classList.contains('active')) {
@@ -44,6 +46,7 @@ function refresh() {
 
     DivTime.innerHTML = `<br>${str}<span class="timeMS">${strMS}</span><br>Paris, France`;
 }
+
 refresh();
 window.onload = function() {
     refresh();

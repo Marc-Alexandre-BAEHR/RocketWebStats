@@ -178,8 +178,6 @@ function getPlayerData(nickname, matches) {
             avg: avg_demos
         }
     }
-    
-    // console.log(PlayerDatas);
     return PlayerDatas;
 }
 
