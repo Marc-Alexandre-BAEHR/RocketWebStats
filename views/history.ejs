@@ -16,7 +16,7 @@
 
 <body>
     <!-- Affichage du header-->
-     <%- include('layout/header.ejs') %>
+     <%- include('layout/header.ejs', {refreshed_time: refreshed_time}) %>
 
     <main>
         <!-- Include de la sidebar -->
@@ -28,7 +28,7 @@
             <% if (matches.length===0) { %>
                 <p>No match found.</p>
             <% } else { %>
-                <% matches.forEach(match=> { %>
+                <% matches.forEach(match => { %>
                     <div class="match-background">
                         <%- include('history/headerBox', { match: match }) %>
                         <%- include('history/matchBox', { match: match }) %>

@@ -1,6 +1,6 @@
 // const { getPlayerDataByNickname } = require("../Js/getPlayerData");
 
-const { generateJSON } = require("../Js/getMatchData");
+// const { generateJSON } = require("../Js/getMatchData");
 
 function toggleDetails(MatchID) {
     const details = document.getElementById('details_'+MatchID);
@@ -36,13 +36,14 @@ for (const element of elements) {
 // 'sidebar-time';
 const DivTime = document.getElementById('sidebar-time');
 
+function pad(n) {
+    return n.toString().padStart(2, '0');
+}
+
 function refresh() {
     var date = new Date();
-    var str = date.getHours();
-    var strMS = "";
-    str += ':'+(date.getMinutes()<10?'0':'')+date.getMinutes();
-    str += ':'+(date.getSeconds()<10?'0':'')+date.getSeconds();
-    strMS += '.'+(date.getMilliseconds()<10?'0':'')+date.getMilliseconds();
+    var str = pad(date.getHours()) + ':' + pad(date.getMinutes()) + ':' + pad(date.getSeconds());
+    var strMS = '.'+(date.getMilliseconds()<10?'0':'')+date.getMilliseconds();
 
     DivTime.innerHTML = `<br>${str}<span class="timeMS">${strMS}</span><br>Paris, France`;
 }
@@ -52,5 +53,25 @@ window.onload = function() {
     refresh();
     setInterval(() => {
         refresh();
-    }, 10);
+    }, 69   );
 }
+
+
+
+
+
+
+
+async function refreshHeader() {
+    try {
+        const res = await fetch('/api/update');
+        if (!res.ok) {
+            console.log(res);
+            return;
+        } 
+        else
+            console.log(new Date()  );
+    } catch (e) {
+    }
+}
+setInterval(refreshHeader, 10000);

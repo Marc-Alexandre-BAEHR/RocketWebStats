@@ -1,7 +1,6 @@
 const { getMVP } = require("./matchData/getMVP");
 
 
-
 function games_status(game, nickname) {
     for (const player of game.players) {
         if (player.PlayerName === nickname) {
@@ -19,7 +18,7 @@ function game_nickname_played(game, nickname) {
         if (player.PlayerName === nickname)
             return true;
     }
-    console.log('didnt found player for ', game.id);
+    // console.log('didnt found player for ', game.id);
     return false;
 }
 

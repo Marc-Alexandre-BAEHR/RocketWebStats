@@ -10,6 +10,8 @@ const app = express();
 // fichiers crées
 const { generateJSON }    = require("./Js/getMatchData.js");
 const { getPlayerData }   = require("./Js/getPlayerData.js");
+const { verifyMatches }   = require("./Js/matchData/verifyMatches.js");
+
 const PORT = 5500;
 
 
@@ -21,10 +23,29 @@ app.use(express.static("public"));
 
 
 // Initialisation :
-let matches = undefined; 
-// await generateJSON();
-let PlayerDatas = undefined;
-// let PlayerDatas = getPlayerData(process.env.NICKNAME, matches);
+let matches = undefined; // await generateJSON();
+let validMatches = undefined;
+let PlayerDatas = undefined; // let PlayerDatas = getPlayerData(process.env.NICKNAME, matches);
+
+
+
+function getLastRefresh() {
+    // let result = "";
+
+    const DateRefreshed = new Date();
+
+    // const year = DateRefreshed.getFullYear();
+    // const month = DateRefreshed.getMonth();
+
+    // Ajoute un zéro devant si besoin
+    const pad = n => n.toString().padStart(2, '0');
+
+    const hours = pad(DateRefreshed.getHours());
+    const minutes = pad(DateRefreshed.getMinutes());
+    const seconds = pad(DateRefreshed.getSeconds());
+
+    return `Last refresh : ${hours}:${minutes}.${seconds}`;
+}
 
 
 // - Fonction utilisée lors de la visite sur les pages du serveur
@@ -41,9 +62,21 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/api/update", async (req, res) => {
-    matches = await generateJSON();
+    try {
+        matches = await generateJSON();
+        validMatches = verifyMatches(matches);
+        validMatchesReversed = validMatches.reverse();
+        PlayerDatas = getPlayerData(process.env.NICKNAME, validMatches);
 
-    return matches;
+        res.json({
+            refreshed_time: getLastRefresh(),
+            matches: validMatchesReversed,
+            PlayerDatas: PlayerDatas,
+            nickname: process.env.NICKNAME 
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
 
 // Route pour afficher les parties jouées des fichiers récupérés
@@ -54,12 +87,12 @@ app.get("/history", async (req, res) => {
         matches = await generateJSON();
 
         // récupère uniquement les matche valides pour éviter tout problème d'erreur dans les .ejs
-        const validMatches = matches.filter(
-            m => m && m.timestamp && m.teams && m.teams.length === 2
-        );
+        validMatches = verifyMatches(matches);
+        validMatchesReversed = validMatches.reverse();
 
-        res.render("history", { 
-            matches: validMatches.reverse(),
+        res.render("history", {
+            refreshed_time: getLastRefresh(),
+            matches: validMatchesReversed,
             nickname: process.env.NICKNAME 
         });
     } catch (err) {
@@ -74,15 +107,14 @@ app.get("/player", async (req, res) => {
         matches = await generateJSON();
 
         // récupère uniquement les matche valides pour éviter tout problème d'erreur dans les .ejs
-        const validMatches = matches.filter(
-            m => m && m.timestamp && m.teams && m.teams.length === 2
-        );
+        validMatches = verifyMatches(matches);
 
         // Permet de formatter les données récupérer dans le .json précedemment pour
         // pouvoir les afficher en fonction du joueur
         PlayerDatas = getPlayerData(process.env.NICKNAME, validMatches);
 
         res.render("player", {
+            refreshed_time: getLastRefresh(),
             PlayerDatas: PlayerDatas,
             nickname: process.env.NICKNAME 
         });

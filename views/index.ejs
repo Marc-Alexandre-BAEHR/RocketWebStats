@@ -7,13 +7,13 @@
     <link rel="shortcut icon" href="#">
 
     <link rel="stylesheet" href="/CSS/styles.css">
-    <link rel="stylesheet" href="/CSS/table.css">
+    <link rel="stylesheet" href="/CSS/history/table.css">
     <link rel="stylesheet" href="/CSS/sidebar.css">
 </head>
 
 <body>
     <!-- Affichage du header-->
-     <%- include('layout/header.ejs') %>
+     <%- include('layout/header.ejs', {refreshed_time: refreshed_time}) %>
 
     <main>
         <!-- Include de la sidebar -->

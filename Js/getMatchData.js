@@ -18,12 +18,6 @@ const { parseCSV }              = require("./matchData/parseCSV.js");
 // Fonction pour générer le .json et envoyé les données au serveur, pour ensuite les rendre sur le site
 async function generateJSON() {
 
-    // Variables :
-    // -> Nombre de matches
-    let games_found     = 0; // -> Parties déjà existantes
-    let new_games       = 0; // -> Parties analysées
-    let total_games     = 0; // -> Total des parties
-
     // Psedonyme du joueur à suivre
     const nickname = process.env.NICKNAME;
 
@@ -32,9 +26,9 @@ async function generateJSON() {
     
     // tableau qui stockera les dictionnaires de chaque matchs avec leurs statistiques
     let matches = [ new Date() ];
-    if (fs.existsSync(jsonPathMatch)) {
-        matches = JSON.parse(fs.readFileSync(jsonPathMatch, "utf8"));
-    }
+    // if (fs.existsSync(jsonPathMatch)) {
+    //     matches = JSON.parse(fs.readFileSync(jsonPathMatch, "utf8"));
+    // }
 
     // définit l'ID à 1 car on compte le nombre de match joué, excludant donc le 0
     let id = 1;
@@ -42,26 +36,16 @@ async function generateJSON() {
     // parcours chaque fichiers pour récuperer les informations du match
     // (score, buts inscris, victoire ou défaite, )
     for (const file of files) {
-        total_games++;
-
         try {
             
             // regarde d'abord si le fichier est déjà présent dans le .json
             // évite de devoir regarder tout les fichiers
-            if (matches.some(m => m.filename === file)) {
-                games_found++;
-                // console.log('skipping -> ', file);
-                continue;
-            } else {
-                new_games++;
-                console.log('[ NEW FILE ANALYSED ]  -> ', file);
-            }
+            
+            // if (matches.some(m => m.filename === file)) continue;
 
 
             // récupération des données de chaque fichier, dans data
             const data = await parseCSV(path.join(folderPath, file));
-    
-            console.log(data);
     
             // récupération des données des 2 teams (cumul des scores des joueurs de chaque team)
             const teamsData = getTeamsData(data);
