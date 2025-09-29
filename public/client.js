@@ -36,14 +36,14 @@ for (const element of elements) {
 // 'sidebar-time';
 const DivTime = document.getElementById('sidebar-time');
 
-function pad(n) {
-    return n.toString().padStart(2, '0');
+function pad(n, x) {
+    return n.toString().padStart(x, '0');
 }
 
 function refresh() {
     var date = new Date();
-    var str = pad(date.getHours()) + ':' + pad(date.getMinutes()) + ':' + pad(date.getSeconds());
-    var strMS = '.'+(date.getMilliseconds()<10?'0':'')+date.getMilliseconds();
+    var str = pad(date.getHours(), 2) + ':' + pad(date.getMinutes(), 2) + ':' + pad(date.getSeconds(), 2);
+    var strMS = '.'+pad(date.getMilliseconds(), 3);
 
     DivTime.innerHTML = `<br>${str}<span class="timeMS">${strMS}</span><br>Paris, France`;
 }

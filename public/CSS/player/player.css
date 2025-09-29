@@ -1,13 +1,14 @@
 .GlobalGroup {
     background: lightcoral;
-    background: transparent;
-    outline: 1px solid blue;
+    background: #007788;
+    /* outline: 1px solid blue; */
     color: white;
     text-align: center;
-    display: flex; 
+    display: flex;
+    flex-direction: column;
     width: max-content;
     height: max-content;
-    padding: 0 20px;
+    padding: 0 15px;
     border-radius: 5px;
     margin: 0 auto;
     margin-bottom: 20px;
@@ -20,13 +21,14 @@
     padding: 15px;
     position: relative;
     border-radius: 5px;
+    display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     height: max-content;
     position: relative;
     margin: 20px 0;
-    margin-right: 20px;
+    /* margin-right: 20px; */
 }
 
 .group .title {
@@ -57,16 +59,23 @@
 }
 
 .MainGroup {
-    display: block;
-    /* background: #0000aa22; */
-    /* outline: 1px solid #00000050; */
     border-radius: 3px;
-    width: 25%;
     height: max-content;
     color: white;
     margin-left: 5%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 .AllStats {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
+}
+
+#PlayerGlobalId {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px; 
 }

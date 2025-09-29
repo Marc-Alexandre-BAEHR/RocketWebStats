@@ -13,8 +13,11 @@ header {
     background: black;
     color: white;
     text-align: center;
-    padding: 2vh 0;
-    height: 5vh;
+    display: flex;
+    justify-content: space-between;
+    /* padding: auto 0; */
+    margin: auto 0;
+    height: max-content;
 }
 
 /* Permet de retirer tout espace pouvant être générer par le titre h1 (margin top et bottom surtout ) */
