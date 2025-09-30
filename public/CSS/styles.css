@@ -15,7 +15,8 @@ header {
     text-align: center;
     display: flex;
     justify-content: space-between;
-    /* padding: auto 0; */
+    align-items: center;
+    padding: 10px;
     margin: auto 0;
     height: max-content;
 }
@@ -44,7 +45,7 @@ main {
 }
 
 
-#block {
+.block {
     display: block;
 }
 

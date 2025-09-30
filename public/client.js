@@ -1,15 +1,9 @@
-// const { getPlayerDataByNickname } = require("../Js/getPlayerData");
-
-// const { generateJSON } = require("../Js/getMatchData");
-
 function toggleDetails(MatchID) {
     const details = document.getElementById('details_'+MatchID);
-    if (details.classList.contains('active')) {
+    if (details.classList.contains('active'))
         details.classList.remove('active');
-    } else {
+    else
         details.classList.add('active');
-    }
-    // console.log("MatchID Got : ", MatchID);
 }
 
 function getPageByOnClick(element) {
@@ -19,7 +13,6 @@ function getPageByOnClick(element) {
     const final = locationHref.slice(1, locationHref.length - 1);
     return final;
 }
-
 
 // Method to get the actual loc
 const myLocation = location.href.slice(location.origin.length, location.href.length);
@@ -34,25 +27,51 @@ for (const element of elements) {
 
 // Method to get the time in real-time 
 // 'sidebar-time';
+const TimeRefreshing = document.getElementById('TimeRefreshing');
 const DivTime = document.getElementById('sidebar-time');
+const cooldown = 6000; // in MS
 
-function pad(n, x) {
-    return n.toString().padStart(x, '0');
-}
+
+
+
+function pad(n, x) { return n.toString().padStart(x, '0'); }
 
 function refresh() {
     var date = new Date();
     var str = pad(date.getHours(), 2) + ':' + pad(date.getMinutes(), 2) + ':' + pad(date.getSeconds(), 2);
-    var strMS = '.'+pad(date.getMilliseconds(), 3);
+    var strMS = '.' + pad(date.getMilliseconds(), 3);
 
     DivTime.innerHTML = `<br>${str}<span class="timeMS">${strMS}</span><br>Paris, France`;
 }
+
+function formatRefreshTimer(timeLeft)
+{
+    timeRebased = timeLeft/1000
+
+    if (timeRebased > 10)
+        return `${pad((timeRebased).toFixed(0))}s`;
+    if (timeRebased < 10 && timeRebased > 3)
+        return `${pad((timeRebased).toFixed(1))}s`;
+    return `${pad((timeRebased).toFixed(2))}s`;
+        
+}
+
+function formatDate(date)
+{
+    const hours = pad(date.getHours(), 2);
+    const minutes = pad(date.getMinutes(), 2);
+    const seconds = pad(date.getSeconds(), 2);
+    return `${hours}:${minutes}.${seconds}`;
+}
+let LastRefresh = new Date();
 
 refresh();
 window.onload = function() {
     refresh();
     setInterval(() => {
         refresh();
+        calculTime(LastRefresh, cooldown);
+
     }, 69   );
 }
 
@@ -62,16 +81,23 @@ window.onload = function() {
 
 
 
-async function refreshHeader() {
-    try {
-        const res = await fetch('/api/update');
-        if (!res.ok) {
-            console.log(res);
-            return;
-        } 
-        else
-            console.log(new Date()  );
-    } catch (e) {
-    }
+function calculTime(refreshDate, cooldown)
+{
+    const actTime = new Date();
+    const actTime_timestamp = actTime.getTime();
+    const refreshDate_timestamp = refreshDate.getTime();
+
+
+    const timeLeft = cooldown - (actTime_timestamp - refreshDate_timestamp);
+    TimeRefreshing.innerHTML = `Refresh in ${formatRefreshTimer(timeLeft)}`;
+
+    return timeLeft;
 }
-setInterval(refreshHeader, 10000);
+
+
+
+async function refreshHeader() {
+    LastRefresh = new Date();
+    updateDatas();
+}
+setInterval(refreshHeader, cooldown);

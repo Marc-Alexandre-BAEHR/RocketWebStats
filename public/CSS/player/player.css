@@ -1,7 +1,6 @@
 .GlobalGroup {
     background: lightcoral;
     background: #007788;
-    /* outline: 1px solid blue; */
     color: white;
     text-align: center;
     display: flex;
@@ -28,7 +27,6 @@
     height: max-content;
     position: relative;
     margin: 20px 0;
-    /* margin-right: 20px; */
 }
 
 .group .title {

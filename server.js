@@ -11,6 +11,7 @@ const app = express();
 const { generateJSON }    = require("./Js/getMatchData.js");
 const { getPlayerData }   = require("./Js/getPlayerData.js");
 const { verifyMatches }   = require("./Js/matchData/verifyMatches.js");
+const { verify } = require('crypto');
 
 const PORT = 5500;
 
@@ -28,18 +29,14 @@ let validMatches = undefined;
 let PlayerDatas = undefined; // let PlayerDatas = getPlayerData(process.env.NICKNAME, matches);
 
 
+function pad(n)
+{
+    return n.toString().padStart(2, '0');
+}
 
-function getLastRefresh() {
-    // let result = "";
-
+function getLastRefresh()
+{
     const DateRefreshed = new Date();
-
-    // const year = DateRefreshed.getFullYear();
-    // const month = DateRefreshed.getMonth();
-
-    // Ajoute un zéro devant si besoin
-    const pad = n => n.toString().padStart(2, '0');
-
     const hours = pad(DateRefreshed.getHours());
     const minutes = pad(DateRefreshed.getMinutes());
     const seconds = pad(DateRefreshed.getSeconds());
@@ -47,13 +44,13 @@ function getLastRefresh() {
     return `Last refresh : ${hours}:${minutes}.${seconds}`;
 }
 
-
 // - Fonction utilisée lors de la visite sur les pages du serveur
 // Page d'accueil
 app.get("/", async (req, res) => {
     try {
         // Permet d'utiliser temporairement le nickname dans les fichiers .ejs
         res.render("index", {
+            refreshed_time: getLastRefresh(),
             nickname: process.env.NICKNAME 
         });
     } catch(err) {
@@ -61,23 +58,22 @@ app.get("/", async (req, res) => {
     }
 });
 
-app.get("/api/update", async (req, res) => {
-    try {
-        matches = await generateJSON();
-        validMatches = verifyMatches(matches);
-        validMatchesReversed = validMatches.reverse();
-        PlayerDatas = getPlayerData(process.env.NICKNAME, validMatches);
+app.get("/api/matches", async (req, res) => {
+    const matches = await generateJSON();
+    const validMatches = verifyMatches(matches);
 
-        res.json({
-            refreshed_time: getLastRefresh(),
-            matches: validMatchesReversed,
-            PlayerDatas: PlayerDatas,
-            nickname: process.env.NICKNAME 
-        });
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
+    res.json(validMatches);
 });
+
+app.get("/api/player", async (req, res) => {
+
+    const matches = await generateJSON();
+    const validMatches = verifyMatches(matches);
+    const PlayerDatas = getPlayerData(process.env.NICKNAME, validMatches);
+
+    res.json(PlayerDatas);
+});
+
 
 // Route pour afficher les parties jouées des fichiers récupérés
 app.get("/history", async (req, res) => {
