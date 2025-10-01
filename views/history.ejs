@@ -23,21 +23,9 @@
         <%- include('layout/sidebar.ejs') %>
 
         <!-- Affichage de la section droite (pour voir l'historique des matchs) -->
-        <section class="right-bar block" id="sectionMatches">
-            <% if (matches.length===0) { %>
-                <p>No match found.</p>
-            <% } else { %>
-                <% matches.forEach(match => { %>
-                    <div class="match-background">
-                        <%- include('history/headerBox', { match: match }) %>
-                        <%- include('history/matchBox', { match: match }) %>
-                    </div>
-                <% }) %>
-            <% } %>
-        </section>
+        <section class="right-bar block" id="sectionMatches"></section>
     </main>
 
 </body>
-<script src="client.js"></script>
-<script src="updateDatas.js"></script>
+<%- include('layout/javascript.ejs') %>
 </html>

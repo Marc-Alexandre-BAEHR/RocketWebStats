@@ -1,3 +1,15 @@
+// Variables
+const TimeRefreshing = document.getElementById('TimeRefreshing');
+const DivTime = document.getElementById('sidebar-time');
+
+// > Cooldown
+const cooldown = 30050; // en ms, ici 30050 = 30.05sec (+0.05 pour l'oeil)
+
+
+
+
+
+// Functions
 function toggleDetails(MatchID) {
     const details = document.getElementById('details_'+MatchID);
     if (details.classList.contains('active'))
@@ -27,9 +39,6 @@ for (const element of elements) {
 
 // Method to get the time in real-time 
 // 'sidebar-time';
-const TimeRefreshing = document.getElementById('TimeRefreshing');
-const DivTime = document.getElementById('sidebar-time');
-const cooldown = 6000; // in MS
 
 
 
@@ -95,9 +104,9 @@ function calculTime(refreshDate, cooldown)
 }
 
 
-
 async function refreshHeader() {
     LastRefresh = new Date();
-    updateDatas();
+    await updateDatas();
 }
+refreshHeader();
 setInterval(refreshHeader, cooldown);
