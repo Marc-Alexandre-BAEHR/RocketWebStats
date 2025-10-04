@@ -24,11 +24,11 @@
         <section class="right-bar" id="block">
             <!-- Include des informations globales du joueur -->
             <%- include('player/globalInformations.ejs', {
-                nickname:nickname,
+                AccountID:AccountID,
                 PlayerDatas:PlayerDatas
             }); %>
             <%- include('player/Statistics.ejs', {
-                nickname:nickname,
+                AccountID:AccountID,
                 PlayerDatas:PlayerDatas
             }); %>
 

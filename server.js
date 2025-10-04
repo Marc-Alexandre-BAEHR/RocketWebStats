@@ -29,6 +29,15 @@ let validMatches = undefined;
 let PlayerDatas = undefined; // let PlayerDatas = getPlayerData(process.env.NICKNAME, matches);
 
 
+// Récupération des ID du joueur
+let AccountID = process.env.ACCOUNT_ID.split(',');
+
+console.log(AccountID);
+
+
+
+
+
 function pad(n)
 {
     return n.toString().padStart(2, '0');
@@ -51,7 +60,7 @@ app.get("/", async (req, res) => {
         // Permet d'utiliser temporairement le nickname dans les fichiers .ejs
         res.render("index", {
             refreshed_time: getLastRefresh(),
-            nickname: process.env.NICKNAME 
+            AccountID: AccountID
         });
     } catch(err) {
         res.render("errorpage", { err: err.message, title: 'Erreur BackEnd' });
@@ -69,9 +78,13 @@ app.get("/api/player", async (req, res) => {
 
     const matches = await generateJSON();
     const validMatches = verifyMatches(matches);
-    const PlayerDatas = getPlayerData(process.env.NICKNAME, validMatches);
+    const PlayerDatas = getPlayerData(AccountID, validMatches);
 
     res.json(PlayerDatas);
+});
+
+app.get("/api/id", async (req, res) => {
+    res.json(AccountID);
 });
 
 
@@ -89,10 +102,10 @@ app.get("/history", async (req, res) => {
         res.render("history", {
             refreshed_time: getLastRefresh(),
             matches: validMatchesReversed,
-            nickname: process.env.NICKNAME 
+            AccountID: AccountID
         });
     } catch (err) {
-        res.render("errorpage", { err: err.message, title: 'Erreur BackEnd' });
+        res.render("errorpage", { message: err.message, title: 'Erreur BackEnd' });
     }
 });
 
@@ -107,15 +120,15 @@ app.get("/player", async (req, res) => {
 
         // Permet de formatter les données récupérer dans le .json précedemment pour
         // pouvoir les afficher en fonction du joueur
-        PlayerDatas = getPlayerData(process.env.NICKNAME, validMatches);
+        PlayerDatas = getPlayerData(AccountID, validMatches);
 
         res.render("player", {
             refreshed_time: getLastRefresh(),
             PlayerDatas: PlayerDatas,
-            nickname: process.env.NICKNAME 
+            AccountID: AccountID
         });
     } catch (err) {
-        res.render("errorpage", { err: err.message, title: 'Erreur BackEnd' });
+        res.render("errorpage", { message: err.message, title: 'Erreur BackEnd' });
     }
 });
 

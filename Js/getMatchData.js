@@ -14,12 +14,29 @@ const { convertPlatform }       = require("./matchData/convertPlatform.js");
 const { parseCSV }              = require("./matchData/parseCSV.js");
 
 
+let AccountID = process.env.ACCOUNT_ID.split(',');
+let AccountIDList = [];
+for (element of AccountID) {
+    AccountIDList.push(element);
+}
+console.log(AccountIDList);
+
+
+function comparePlayers(playerCompare, AccountsList)
+{
+    for (element in AccountsList) {
+        if (playerCompare === element)
+            return true;
+    }
+    return false;
+}
+
 
 // Fonction pour générer le .json et envoyé les données au serveur, pour ensuite les rendre sur le site
 async function generateJSON() {
 
     // Psedonyme du joueur à suivre
-    const nickname = process.env.NICKNAME;
+    // const nickname = process.env.NICKNAME;
 
     // renvoie tout les fichiers finissant en .csv figurant dans le dossier
     const files = fs.readdirSync(folderPath).filter(f => f.endsWith(".csv"));
@@ -46,15 +63,20 @@ async function generateJSON() {
 
             // récupération des données de chaque fichier, dans data
             const data = await parseCSV(path.join(folderPath, file));
+
+
+            const getPlayerAccountId = undefined;
     
             // récupération des données des 2 teams (cumul des scores des joueurs de chaque team)
             const teamsData = getTeamsData(data);
     
             // récupère la team du joueur, et détermine grace à l'équipe si le joueur a gagné ou non
-            const playerTeam = data.find(p => p.PlayerName === nickname)?.TeamName;
+            const playerTeam = data.find(p => comparePlayers(p.AccountId, AccountIDList))?.TeamName;
             
+            console.log(playerTeam);
+
             let matchResult = "";
-            if (data.find(p => p.PlayerName === nickname))
+            if (data.find(p => AccountIDList.includes(p.AccountId)))
                 matchResult = (playerTeam && playerTeam === getWinner(teamsData)) ? "Win" : "Lose";
             else
                 matchResult = 'N/A'; 

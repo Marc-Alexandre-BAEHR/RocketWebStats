@@ -99,9 +99,11 @@ async function updateDatas() {
     const nickname = "Mithanne"; // futur => fetch depuis env
 
     // Récupération des informations sur les matches enregistrés ainsi que sur les stats de l'utilisateur
+    const AccountIDPromise = fetch("./api/id");
     const matchesPromise = fetch("./api/matches");
     const playerPromise = fetch("./api/player");
-    const [matchesRes, playerRes] = await Promise.all([matchesPromise, playerPromise]);
+    const [AccountIDRes, matchesRes, playerRes] = await Promise.all([AccountIDPromise, matchesPromise, playerPromise]);
+    const AccountID = await AccountIDRes.json();
     const matches = await matchesRes.json();
     const player = await playerRes.json();
 
@@ -180,7 +182,7 @@ async function updateDatas() {
                 // MVP
                 let Preview_MVPResult = document.createElement('div');
                 Preview_MVPResult.classList.add('mvp-result');
-                if (game.mvp.PlayerName === nickname) {
+                if (game.mvp.PlayerName === AccountID) {
                     Preview_MVPResult.textContent = 'MVP';
                 } else {
                     Preview_MVPResult.style.background = "transparent";

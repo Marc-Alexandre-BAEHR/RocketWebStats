@@ -1,9 +1,9 @@
 const { getMVP } = require("./matchData/getMVP");
 
 
-function games_status(game, nickname) {
+function games_status(game, EnvAccountID) {
     for (const player of game.players) {
-        if (player.PlayerName === nickname) {
+        if (player.AccountId === EnvAccountID) {
             if (player.TeamName === game.winner)
                 return true;
             else
@@ -13,18 +13,23 @@ function games_status(game, nickname) {
     return false;
 }
 
-function game_nickname_played(game, nickname) {
+function game_nickname_played(game, EnvAccountID) {
     for (const player of game.players) {
-        if (player.PlayerName === nickname)
+        if (player.AccountId === EnvAccountID)
             return true;
     }
     // console.log('didnt found player for ', game.id);
     return false;
 }
 
-function getInformations(info, game, nickname) {
+function getInformations(info, game, EnvAccountID) {
     for (const player of game.players) {
-        if (player.PlayerName === nickname)
+
+        if (EnvAccountID.contains(player.AccountId)) {
+            console.log("OUIII <3333");
+        }
+
+        if (player.AccountId === EnvAccountID)
             return parseInt(player.info);
     }
     return 0;
@@ -35,7 +40,7 @@ function getAverage(total, games, pre) {
 }
 
 
-function getPlayerData(nickname, matches) {
+function getPlayerData(AccountID, matches) {
 
     // Déclaration de toute les variables nécessaires    
 
@@ -80,7 +85,7 @@ function getPlayerData(nickname, matches) {
 
 
         // 0. Si le joueur n'est pas dans la partie, alors on continue
-        if (!game_nickname_played(game, nickname))
+        if (!game_nickname_played(game, AccountID))
             continue;
 
         // console.log('GameFile: ', game.filename);
@@ -90,9 +95,9 @@ function getPlayerData(nickname, matches) {
         games_played++;
 
         // Partie gagné ou perdu ?
-        if (games_status(game, nickname)) {
+        if (games_status(game, AccountID)) {
             // Si le joueur a terminé MVP
-            if (game.mvp.PlayerName === nickname)
+            if (game.mvp.AccountId === AccountID)
                 games_mvp++;
             games_won++;
         }
@@ -100,7 +105,7 @@ function getPlayerData(nickname, matches) {
         // 2. Ajout des statistiques
         
         for (const player of game.players) {
-            if (player.PlayerName === nickname) {
+            if (player.AccountId === AccountID) {
                 total_score += parseInt(player.Score);
                 total_goals += parseInt(player.Goals);
                 total_assits+= parseInt(player.Assists);
@@ -146,7 +151,6 @@ function getPlayerData(nickname, matches) {
     
 
     const PlayerDatas = {
-        nickname: nickname,
         game: {
             played: games_played,
             win: games_won,
