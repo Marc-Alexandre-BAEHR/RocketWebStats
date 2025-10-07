@@ -84,18 +84,11 @@ window.onload = function() {
     }, 69   );
 }
 
-
-
-
-
-
-
 function calculTime(refreshDate, cooldown)
 {
     const actTime = new Date();
     const actTime_timestamp = actTime.getTime();
     const refreshDate_timestamp = refreshDate.getTime();
-
 
     const timeLeft = cooldown - (actTime_timestamp - refreshDate_timestamp);
     TimeRefreshing.innerHTML = `Refresh in ${formatRefreshTimer(timeLeft)}`;
