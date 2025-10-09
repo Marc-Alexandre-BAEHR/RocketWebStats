@@ -32,12 +32,6 @@ let PlayerDatas = undefined; // let PlayerDatas = getPlayerData(process.env.NICK
 // Récupération des ID du joueur
 let AccountID = process.env.ACCOUNT_ID.split(',');
 
-console.log(AccountID);
-
-
-
-
-
 function pad(n)
 {
     return n.toString().padStart(2, '0');

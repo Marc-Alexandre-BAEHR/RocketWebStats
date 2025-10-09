@@ -19,14 +19,12 @@ let AccountIDList = [];
 for (element of AccountID) {
     AccountIDList.push(element);
 }
-console.log(AccountIDList);
-
 
 function getPlayerID(data, AccountIDList)
 {
     for (const player of data) {
         for (id of AccountIDList) {
-            console.log(`Compare: ${player.AccountId} - ${id}`);
+            // console.log(`Compare: ${player.AccountId} - ${id}`);
             if (player.AccountId === id)
                 return id;
         }
@@ -62,7 +60,7 @@ async function generateJSON() {
             // évite de devoir regarder tout les fichiers
             
             // if (matches.some(m => m.filename === file)) continue;
-            console.log(`-=-=- Scanning GAME ${id} -=-=-`);
+            // console.log(`-=-=- Scanning GAME ${id} -=-=-`);
 
 
 
@@ -71,7 +69,7 @@ async function generateJSON() {
 
 
             const PlayerAccountId = getPlayerID(data, AccountIDList);
-            console.log(`AccountID ${PlayerAccountId} for ${id}`);
+            // console.log(`AccountID ${PlayerAccountId} for ${id}`);
 
     
             // récupération des données des 2 teams (cumul des scores des joueurs de chaque team)
