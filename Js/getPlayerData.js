@@ -1,38 +1,29 @@
 const { getMVP } = require("./matchData/getMVP");
 
 
-function games_status(game, EnvAccountID) {
+function games_status(game, EnvAccountID)
+{
     for (const player of game.players) {
-        if (player.AccountId === EnvAccountID) {
-            if (player.TeamName === game.winner)
-                return true;
-            else
-                return false;
+        for (const id of EnvAccountID) {
+            if (player.AccountId === id) {
+                if (player.TeamName === game.winner)
+                    return true;
+            }
         }
     }
     return false;
 }
 
-function game_nickname_played(game, EnvAccountID) {
+function game_nickname_played(game, EnvAccountID)
+{
     for (const player of game.players) {
-        if (player.AccountId === EnvAccountID)
-            return true;
+        for (const id of EnvAccountID) {
+            if (player.AccountId === id)
+                return true;
+        }
     }
     // console.log('didnt found player for ', game.id);
     return false;
-}
-
-function getInformations(info, game, EnvAccountID) {
-    for (const player of game.players) {
-
-        if (EnvAccountID.contains(player.AccountId)) {
-            console.log("OUIII <3333");
-        }
-
-        if (player.AccountId === EnvAccountID)
-            return parseInt(player.info);
-    }
-    return 0;
 }
 
 function getAverage(total, games, pre) {
@@ -97,21 +88,25 @@ function getPlayerData(AccountID, matches) {
         // Partie gagné ou perdu ?
         if (games_status(game, AccountID)) {
             // Si le joueur a terminé MVP
-            if (game.mvp.AccountId === AccountID)
-                games_mvp++;
+            for (const id of AccountID) {
+                if (game.mvp.AccountId === id)
+                    games_mvp++;
+            }
             games_won++;
         }
 
         // 2. Ajout des statistiques
         
         for (const player of game.players) {
-            if (player.AccountId === AccountID) {
-                total_score += parseInt(player.Score);
-                total_goals += parseInt(player.Goals);
-                total_assits+= parseInt(player.Assists);
-                total_saves += parseInt(player.Saves);
-                total_shots += parseInt(player.Shots);
-                total_demos += parseInt(player.Demolishes);
+            for (const id of AccountID) {
+                if (player.AccountId === id) {
+                    total_score += parseInt(player.Score);
+                    total_goals += parseInt(player.Goals);
+                    total_assits+= parseInt(player.Assists);
+                    total_saves += parseInt(player.Saves);
+                    total_shots += parseInt(player.Shots);
+                    total_demos += parseInt(player.Demolishes);
+                }
             }
         }
         

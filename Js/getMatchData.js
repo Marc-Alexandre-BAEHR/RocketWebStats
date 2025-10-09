@@ -22,13 +22,16 @@ for (element of AccountID) {
 console.log(AccountIDList);
 
 
-function comparePlayers(playerCompare, AccountsList)
+function getPlayerID(data, AccountIDList)
 {
-    for (element in AccountsList) {
-        if (playerCompare === element)
-            return true;
+    for (const player of data) {
+        for (id of AccountIDList) {
+            console.log(`Compare: ${player.AccountId} - ${id}`);
+            if (player.AccountId === id)
+                return id;
+        }
     }
-    return false;
+    return undefined;
 }
 
 
@@ -59,24 +62,27 @@ async function generateJSON() {
             // évite de devoir regarder tout les fichiers
             
             // if (matches.some(m => m.filename === file)) continue;
+            console.log(`-=-=- Scanning GAME ${id} -=-=-`);
+
 
 
             // récupération des données de chaque fichier, dans data
             const data = await parseCSV(path.join(folderPath, file));
 
 
-            const getPlayerAccountId = undefined;
+            const PlayerAccountId = getPlayerID(data, AccountIDList);
+            console.log(`AccountID ${PlayerAccountId} for ${id}`);
+
     
             // récupération des données des 2 teams (cumul des scores des joueurs de chaque team)
             const teamsData = getTeamsData(data);
     
             // récupère la team du joueur, et détermine grace à l'équipe si le joueur a gagné ou non
-            const playerTeam = data.find(p => comparePlayers(p.AccountId, AccountIDList))?.TeamName;
+            const playerTeam = data.find(p => p.AccountId === PlayerAccountId)?.TeamName;
             
-            console.log(playerTeam);
 
             let matchResult = "";
-            if (data.find(p => AccountIDList.includes(p.AccountId)))
+            if (data.find(p => p.AccountId === PlayerAccountId))
                 matchResult = (playerTeam && playerTeam === getWinner(teamsData)) ? "Win" : "Lose";
             else
                 matchResult = 'N/A'; 
