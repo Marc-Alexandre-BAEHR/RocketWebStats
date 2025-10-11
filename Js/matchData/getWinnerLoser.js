@@ -6,10 +6,10 @@ function getWinner(teamsData) {
             return teamNames[0];
         if (teamsData[teamNames[0]].goals < teamsData[teamNames[1]].goals)
             return teamNames[1];
-        return undefined;
     } catch(err) {
         console.log(`ERR: ID:${teamsData['id']} - getWinner()`);
     }
+    return undefined;
 }
 
 
@@ -21,10 +21,11 @@ function getLoser(teamsData) {
             return teamNames[1];
         if (teamsData[teamNames[0]].goals < teamsData[teamNames[1]].goals)
             return teamNames[0];
-        return undefined;
     } catch(err) {
         console.log(`ERR: ID:${teamsData} - getLoser()`);
     }
+    return undefined;
+
 }
 
 

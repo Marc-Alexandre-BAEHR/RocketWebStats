@@ -80,7 +80,7 @@ async function generateJSON() {
             
 
             let matchResult = "";
-            if (data.find(p => p.AccountId === PlayerAccountId))
+            if (data.find(p => p.AccountId === PlayerAccountId))    
                 matchResult = (playerTeam && playerTeam === getWinner(teamsData)) ? "Win" : "Lose";
             else
                 matchResult = 'N/A'; 
@@ -106,7 +106,10 @@ async function generateJSON() {
             id++;
             matches.push(match);
         } catch (err) {
-            console.error(err);
+            console.log(`-=-=- ${file} -=-=-`);
+            // console.log(`File: ${file}`);
+            console.log(err);
+            console.log('');
         }
     }
 
