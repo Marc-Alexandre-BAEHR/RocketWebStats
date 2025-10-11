@@ -62,15 +62,12 @@ async function generateJSON() {
             // if (matches.some(m => m.filename === file)) continue;
             // console.log(`-=-=- Scanning GAME ${id} -=-=-`);
 
-
-
             // récupération des données de chaque fichier, dans data
             const data = await parseCSV(path.join(folderPath, file));
 
-
             const PlayerAccountId = getPlayerID(data, AccountIDList);
+            
             // console.log(`AccountID ${PlayerAccountId} for ${id}`);
-
     
             // récupération des données des 2 teams (cumul des scores des joueurs de chaque team)
             const teamsData = getTeamsData(data);
