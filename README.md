@@ -31,15 +31,18 @@ Pour pouvoir lancer le projet, vous devrez installer les paquets suivant :
 
 ``` npm install csv-parser dotenv ejs express fs json path ```
 
-#### 3. Dans votre dossier
+#### 3. Fichier environnement
 
 Une fois le projet installé avec NPM, vous devrez creer un fichier ```.env``` \
-et mettre à l'intérieur de ce fichier le chemin d'accès de vos fichiers souhaités : \
-```SAVEDFILEPATH=<folderpath>``` \
-Exemple : \
-```SAVEDFILEPATH=Folder/SavedFiles```
+et mettre à l'intérieur de ce fichier les variables suivantes : \
+- Le chemin où vous fichiers sont stockés \
+```SAVEDFILEPATH='<folderpath>'``` \
 
-#### 4. Terminé
+- Le(s) identifiant(s) du/des compte(s) où vous jouez (Epic Games, steam, xbox) \
+(Plusieurs identifiants sont acceptés, dans ce cas, séparés les avec une virgule ```,```) \
+```ACCOUNT_ID='account1, account2, ...'```
+
+#### 4. Fin de la préparation
 
 Si vous avez suivi toute les étapes, vous devrez pouvoir lancer le programme \
 à l'aide de la commande ```node server.js``` directement dans le terminal 
